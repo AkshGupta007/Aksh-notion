@@ -8,7 +8,7 @@ const Learninglanguage = () => {
     <div className="mt-32">
       <div className="flex flex-col gap-5">
         <div className="text-4xl text-center font-semibold">
-          <h1 className="inline-block">Your Swiss My Life</h1>
+          <h1 className="inline-block"> My Life</h1>
           <Highlighttext text={" i LOVE drishu darling"} />
         </div>
 
