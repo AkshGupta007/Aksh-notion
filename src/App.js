@@ -18,6 +18,10 @@ import Indexcart from './components/core/Dashboard/Cart/Index'
 import Addcourse from './components/core/Dashboard/Addcourse/Index'
 import { useSelector } from 'react-redux'
 import { ACCOUNT_TYPES } from './account'
+import Mycourses from './components/core/Dashboard/Mycourses'
+import Editcourse from './components/core/Dashboard/editcourse/Editcourse'
+import Categorypage from './Pages/Categorypage'
+import CoursePage from './Pages/CoursePage'
 const App = () => {
   // constants.js
  
@@ -38,6 +42,8 @@ const App = () => {
         <Route path="/update-password/:token" element={<Updatepassword />} />
         <Route path="/verify-email" element={<Verifyemail />} />
         <Route path="about" element={<About />} />
+        <Route path="/catalog/:categoryName" element={<Categorypage />} />
+        <Route path="/course/:courseId" element={<CoursePage/>} />
 
         <Route
           path="/dashboard"
@@ -60,6 +66,8 @@ const App = () => {
           {user?.accounttype === ACCOUNT_TYPES.INSTRUCTOR && (
             <>
               <Route path="add-course" element={<Addcourse />} />
+              <Route path="My-courses" element={<Mycourses />} />
+              <Route path="edit-course/:courseId" element={<Editcourse />} />
             </>
           )}
         </Route>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const sectionschema=new schema({
-    sectionname:{
+    sectionName:{
         type:String,
            required:true
     },
@@ -12,4 +12,5 @@ const sectionschema=new schema({
     }]
 });
 
-module.exports=mongoose.model('section', sectionschema);
+const Section=mongoose.model('Section', sectionschema);
+module.exports=Section;

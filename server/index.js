@@ -6,7 +6,7 @@ const database=require('./connections/database');
 const userRoutes=require('./routes/user');
 const courseRoutes=require('./routes/course');
 const profileRoutes=require('./routes/profile');
-// const paymentRoutes=require('..../routes/payment'l);
+const paymentRoutes=require('./routes/payment');
 
 
 
@@ -25,6 +25,7 @@ dotenv.config();
 database.connect();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 app.use(
   cors({
@@ -42,7 +43,7 @@ app.use(fileupload({
 app.use('/api/user',userRoutes);
 app.use('/api/course',courseRoutes);
 app.use('/api/profile',profileRoutes);
-// app.use('/api/payment',paymentRoutes);
+app.use('/api/payment',paymentRoutes);
 
 cloudinaryconfig();
 

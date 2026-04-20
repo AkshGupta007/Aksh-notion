@@ -17,3 +17,6 @@ const schema = mongoose.Schema;
           }
 
  })
+
+ const ratingandrewview=mongoose.model("RatingAndReview",ratingandreviewschema);
+ module.exports=ratingandrewview;

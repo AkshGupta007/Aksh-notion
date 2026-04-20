@@ -1,12 +1,13 @@
-// const express = require('express');
-// const router=express.Router();
+const express = require('express');
+const router=express.Router();
 
-// const{ Authorization }=require('../middlewares/Auth');
+const{ Authorization,isstudent}=require('../middlewares/Auth');
 
 
-// const { capturepayment , verifypayment }=require('../controllers/Razorpay') ;
+const { capturepayment , verifyPayment ,sendPaymentSuccessEmail}=require('../controllers/Razorpay') ;
 
-// router.post('/capturepayment',Authorization,capturepayment);
-// router.post('/verifypayment',verifypayment);
+router.post('/capturepayment',Authorization,isstudent,capturepayment);
+router.post('/verifysignature',Authorization,isstudent,verifyPayment);
+router.post("/sendpaymentemail", Authorization,isstudent, sendPaymentSuccessEmail);
 
-// module.exports=router;
+module.exports=router;

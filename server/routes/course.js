@@ -1,6 +1,8 @@
 const express = require('express');
 const router=express.Router();
 
+
+
 const{Authorization,
     isstudent,
     isadmin,
@@ -9,10 +11,14 @@ const{Authorization,
 
 // course controllers import
 
-const{ createcourse,
-    getallcourses,
-    getcoursedetails,
-}=require('../controllers/course');
+const {
+  createcourse,
+  getallcourses,
+  getcoursedetails,
+  updateCourse,
+  getInstructorCourses,
+  deleteinstructorcourse,
+} = require("../controllers/course");
 
 /// categories controllers import
 
@@ -24,7 +30,7 @@ const{ createsection,deletesection, updatesection }=require('../controllers/Sect
 
 ///// sub-section controllers import
 
-const{ createsubsection, deletesubsection, /*updatesubsection*/ }=require('../controllers/subsection');
+const{ createsubsection, deletesubsection, updatesubsection }=require('../controllers/subsection');
 
 //// rating controllers import
 
@@ -35,9 +41,13 @@ const{ createreview,getavgrating, allreviews }=require('../controllers/ratingAnd
 /////////////
 ///////////////////course routes//////////
 
-router.post('/createcourse',Authorization,isInstructor, createcourse); //// cousrse create by instructor
+router.post("/createcourse", Authorization, isInstructor, createcourse); //// cousrse create by instructor
+
+router.put('/updatecourse',Authorization,isInstructor, updateCourse); //// cousrse update by instructor
 router.get('/getallcourses', getallcourses); /// get all courses
-router.post('/getcoursedetails', getcoursedetails); /// get course details by id
+router.post('/getcoursedetails',Authorization, getcoursedetails); /// get course details by id
+router.get('/getinstructorcourses',Authorization, getInstructorCourses);
+router.post("/deleteinstructorcourse", Authorization,isInstructor,deleteinstructorcourse);
 
 ///////// category routes//////////
 router.post('/createCategory', Authorization,isadmin, createCategory); /// create category by admin
@@ -47,13 +57,14 @@ router.post('/getcategorypagedetails', getcategorypagedetails); /// get category
 
 ///////// section routes////////
 router.post('/createsection', Authorization,isInstructor, createsection);
-router.delete('/deletesection/:sectionid', Authorization,isInstructor, deletesection);
-router.put('/updatesection/:sectionid', Authorization,isInstructor, updatesection);
+router.delete('/deletesection', Authorization,isInstructor, deletesection);
+router.put('/updatesection', Authorization,isInstructor, updatesection);
 
 
 ///////// sub-section routes/////////
 router.post('/createsubsection', Authorization,isInstructor, createsubsection);
-router.delete('/deletesubsection', isInstructor, deletesubsection);
+router.put('/updatesubsection',Authorization,isInstructor,updatesubsection)
+router.delete('/deletesubsection',Authorization, isInstructor, deletesubsection);
 
 ///////// rating and review routes//////////
 router.post('/createreview', Authorization,isstudent, createreview);

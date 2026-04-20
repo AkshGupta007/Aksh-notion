@@ -2,7 +2,9 @@ import clsx from 'clsx';
 import React from 'react'
 import { FaCheck } from "react-icons/fa";
 import Allcourseinformation from './Allcourseinformation/Allcourseinfromation';
+import Coursebuilder from './CourseBuilder/Coursebuilder';
 import { useSelector } from 'react-redux';
+import Publishcourse from './Publishcourse/Publishcourse';
 const Rendersteps = () => {
 
     const { step} = useSelector((state) => state.course);
@@ -21,42 +23,49 @@ const Rendersteps = () => {
         }
     ]
   return (
-    <div className="flex  flex-col  mt-6 ">
-      <div className="flex items-center gap-x-36">
-        {steps.map((item) => {
-          return (
-            <div key={item.id} className="flex items-center gap-x-2">
-              <div key={item.id} className="flex items-center gap-x-2">
-                <p
-                  className={clsx(
-                    "text-sm font-medium rounded",
-                    step == item.id
-                      ? "bg-yellow-500 text-black px-2 py-1"
-                      : "bg-gray-700 text-white px-2 py-1",
-                  )}
-                >
-                  {steps > item.id ? <FaCheck /> : <p>{item.id}</p>}
-                </p>
+    <div className="flex flex-col mt-6 text-white">
+      {/* STEP INDICATOR */}
+      <div className="flex items-center justify-between w-full">
+        {steps.map((item, index) => (
+          <div key={item.id} className="flex items-center w-full">
+            {/* STEP CIRCLE */}
+            <div className="flex flex-col items-center">
+              <div
+                className={clsx(
+                  "flex items-center justify-center w-8 h-8 rounded-full font-medium",
+                  step > item.id
+                    ? "bg-yellow-500 text-black"
+                    : step === item.id
+                      ? "bg-yellow-500 text-black"
+                      : "bg-zinc-500 text-white",
+                )}
+              >
+                {step > item.id ? <FaCheck /> : item.id}
               </div>
 
-              {/* dashes */}
-              {}
+              {/* LABEL */}
+              <p className="text-xs mt-2 text-center w-24">{item.name}</p>
             </div>
-          );
-        })}
+
+            {/* LINE (only if not last step) */}
+            {index !== steps.length - 1 && (
+              <div
+                className={clsx(
+                  "flex-1 border-2 border-dashed mx-2",
+                  step > item.id ? "border-yellow-500" : "border-zinc-600",
+                )}
+              ></div>
+            )}
+          </div>
+        ))}
       </div>
 
-      <div className="text-white flex text-xs gap-x-16">
-        {steps.map((item) => {
-          return (
-            <div key={item.id}>
-              <p>{item.name}</p>
-            </div>
-          );
-        })}
+      {/* STEP CONTENT */}
+      <div className="mt-10">
+        {step === 1 && <Allcourseinformation />}
+        {step === 2 && <Coursebuilder />}
+        {step === 3 && <Publishcourse />}
       </div>
-
-      {step === 1 && <Allcourseinformation />}
     </div>
   );
 }

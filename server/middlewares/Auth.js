@@ -32,7 +32,7 @@ const Authorization = async (req, res, next) => {
 /////////isstudent///
 const isstudent = async (req, res, next) => {
   try {
-    if (req.user.accounttype != "student") {
+    if (req.user.accounttype != "user") {
       return res.status(403).json({
         success: false,
         message: "access denied, students only",

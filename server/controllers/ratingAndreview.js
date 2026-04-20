@@ -1,5 +1,5 @@
 const ratingandreview= require("../models/ratingandreview");
-const course= require("../models/courses");
+const Course= require("../models/courses");
 
 exports.createreview=async(req,res)=>{
     try{
@@ -8,7 +8,7 @@ exports.createreview=async(req,res)=>{
 
         /////// check user is enrolled in course or not
 
-        const userenrolled = await course.findOne({_id:courseid,
+        const userenrolled = await Course.findOne({_id:courseid,
                                                      studentsenrolled:{
                                                         $elemMatch:{$eq:userid}
                                                      }});
@@ -39,7 +39,7 @@ exports.createreview=async(req,res)=>{
          })
          /// update in course
 
-         const course= await findbyIdandUpdate({_id:courseid},{
+         const course= await Course.findbyIdandUpdate({_id:courseid},{
             $push:{
                 ratingandreview: ratingAndreview._id
             }},{new:true}

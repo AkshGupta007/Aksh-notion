@@ -9,7 +9,7 @@ const Learninglanguage = () => {
       <div className="flex flex-col gap-5">
         <div className="text-4xl text-center font-semibold">
           <h1 className="inline-block"> My Life</h1>
-          <Highlighttext text={" i LOVE drishu darling"} />
+          <Highlighttext text={"KNOWLEDGE IS KEY TO SUCCESS"} />
         </div>
 
         <div className="text-center mx-auto text-zinc-700 text-base mt-3 font-medium w-[60%]">

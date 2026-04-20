@@ -9,15 +9,15 @@ const subsectionschema=new schema({
     },
     timeduration:{
         type:Number,
-          required:true
+         
     },
     video:{
         type:String,
-           required:true
+          
     },
     description:{
         type:String,
-           required:true
+           
     }
 });
 const subsection= mongoose.model('subsections', subsectionschema);

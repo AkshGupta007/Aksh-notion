@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const { type } = require('os');
 
 const CourseSchema = new mongoose.Schema({
-    coursename: { type: String, required: true },
-    coursedescription: { type: String },
+    courseName: { type: String, required: true },
+    courseDescription: { type: String },
     price: { type: Number, default: 0 },
     thumbnail: { type:String },
     instructor: { 
@@ -12,7 +12,7 @@ const CourseSchema = new mongoose.Schema({
              },
     coursecontent:[{
         type : mongoose.Schema.Types.ObjectId,
-        ref: 'section'
+        ref: 'Section'
            
     }],
     ratingandreview:[{ 
@@ -25,11 +25,27 @@ const CourseSchema = new mongoose.Schema({
         
       }],
 
+      tags:[
+        {type:String}
+      ],
+
       studentsenrolled:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
        
       }]
+      ,
+      instructions:[{
+        type:String
+      }],
+      whatYouWillLearn:{
+        type:String
+      },
+      status:{
+        type:String,
+        enum:["draft","published"],
+        default:"draft"
+      }
 });
 
 const Course= mongoose.model('Course', CourseSchema);
