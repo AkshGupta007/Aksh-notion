@@ -19,11 +19,11 @@ const CourseSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ratingandreview'
     }],
-      Category:[{
+      Category:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
         
-      }],
+      },
 
       tags:[
         {type:String}

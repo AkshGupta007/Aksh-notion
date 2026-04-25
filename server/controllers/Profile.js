@@ -1,3 +1,4 @@
+const { populate } = require("../models/Category");
 const profile = require("../models/profile");
 const user = require("../models/users");
 
@@ -106,19 +107,50 @@ const getenrolledcourses= async(req,res)=>{
     try {
       const userid = req.user.id;
 
-      const enrolledcourses = await user
-        .findById(userid)
-        .populate("courses");
+     const enrolledcourses = await user.findById(userid).populate({
+       path: "courses", // populate the user's courses
+       populate: {
+         path: "coursecontent", // inside each course, populate coursecontent
+         populate: {
+           path: "subsections", // inside each section, populate subsections
+         },
+       },
+     });
       if (!enrolledcourses) {
         return res.status(404).json({
           success: false,
           message: "user not found or no enrolled courses",
         });
       }
+
+      // ✅ calculate totalDuration for each course
+    const coursesWithDuration = enrolledcourses.courses.map((course) => {
+      let totalSeconds = 0;
+
+      course.coursecontent?.forEach((section) => {
+        section.subsections?.forEach((sub) => {
+          const duration = parseFloat(sub.timeduration) || 0; // ✅ field from your subsection model
+          totalSeconds += duration;
+        });
+      });
+
+      // ✅ convert seconds → "Xh Ym" format
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+      const totalDuration =
+        hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+      return {
+        ...course.toObject(), // ✅ spread mongoose doc as plain object
+        totalDuration,        // ✅ attach calculated duration
+      };
+    });
+      
       return res.status(200).json({
         success: true,
         message: "enrolled courses fetched successfully",
-        data: enrolledcourses.courses,
+        data: coursesWithDuration,
       });
     } catch (error) {
       return res.status(500).json({

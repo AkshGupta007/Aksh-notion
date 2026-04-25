@@ -2,6 +2,15 @@ const Course=require('../models/courses');
 const user = require('../models/users');
 const Category=require('../models/Category');
 const {uploadimagetocloudinary}=require('../utils/imageuploader');
+const CourseProgress=require('../models/courseprogress');
+
+
+function convertSecondsToDuration(seconds) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return `${h}h ${m}m ${s}s`;
+}
 
 // exports.createcourse= async(req,res)=>{
 //     try{
@@ -201,11 +210,31 @@ exports.getcoursedetails=async(req,res)=>{
             })
         }
 
+        let totalDurationInSeconds = 0;
+
+        details.coursecontent.forEach((content) => {
+          content.subsections.forEach((subSection) => {
+            const timeDurationInSeconds =
+              parseInt(subSection.timeduration) || 0;
+            totalDurationInSeconds += timeDurationInSeconds;
+          });
+        });
+
+        const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+
+      
+        // const courseProgressCount = await CourseProgress.findOne({
+        //courseid,
+        //userid: req.user.id,
+        // });
+
         return res.status(200).json({
-            success:true,
-            details,
-            message:"course details fetched successfully"
-        })
+          success: true,
+          details,
+          totalDuration,
+          completedVideos:  [], /// thik hogi
+          message: "course details fetched successfully",
+        });
     }
     catch(error){
         return res.status(500).json({

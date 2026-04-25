@@ -7,7 +7,7 @@ const schema = mongoose.Schema;
     },
     course:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'course'
+        ref:'Course'
     },
     rating:{
         type:Number,
@@ -18,5 +18,5 @@ const schema = mongoose.Schema;
 
  })
 
- const ratingandrewview=mongoose.model("RatingAndReview",ratingandreviewschema);
- module.exports=ratingandrewview;
+ const ratingandreview=mongoose.model("RatingAndReview",ratingandreviewschema);
+ module.exports=ratingandreview;

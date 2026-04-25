@@ -23,7 +23,7 @@ const Editcourse = () => {
 
             if(result){
                 dispatch(setEditCourse(true));
-                dispatch(setCourse(result))
+                dispatch(setCourse(result.details))
             }
               setLoading(false);
         };

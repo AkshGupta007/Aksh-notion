@@ -1,28 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { getUserEnrolledCourses } from "../../../../Services/profileApi";
+import { getCourseProgress } from "../../../../Services/CourseApi"; // ✅ import
 import { useSelector } from "react-redux";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router";
 
 const Enrolled = () => {
-  const [courses, setcourses] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [progressMap, setProgressMap] = useState({}); // ✅ { courseId: percentage }
   const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-  const fetchdata = async () => {
+  const calculateProgress = async (course) => {
+    const totalLectures =
+      course?.coursecontent?.reduce(
+        (acc, sec) => acc + sec.subsections.length,
+        0,
+      ) || 0;
+
+    if (totalLectures === 0) return 0;
+
+    const res = await getCourseProgress(course._id, token);
+    const completed = res?.completedsubsections?.length || 0; // ✅ correct field
+
+    return Math.round((completed / totalLectures) * 100);
+  };
+
+  const fetchData = async () => {
     try {
       const response = await getUserEnrolledCourses(token);
       console.log("raw response is", response);
+      setCourses(response);
 
-      // adjust based on API
-      setcourses(response);
+      // ✅ calculate progress for all courses in parallel after fetch
+      const map = {};
+      await Promise.all(
+        response.map(async (course) => {
+          map[course._id] = await calculateProgress(course);
+        }),
+      );
+      setProgressMap(map);
     } catch (error) {
       console.log("error", error);
-      setcourses([]);
+      setCourses([]);
     }
   };
 
   useEffect(() => {
     if (token) {
-      fetchdata();
+      fetchData();
     }
   }, [token]);
 
@@ -43,7 +69,12 @@ const Enrolled = () => {
           {courses.map((course) => (
             <div
               key={course?._id}
-              className="grid grid-cols-3 items-center p-4 border-b border-gray-700"
+              className="grid grid-cols-3 items-center p-4 border-b border-gray-700 cursor-pointer"
+              onClick={() =>
+                navigate(
+                  `/view-course/courseId/${course?._id}/sectionId/${course?.coursecontent?.[0]?._id}/subSectionId/${course?.coursecontent?.[0]?.subsections?.[0]?._id}`,
+                )
+              }
             >
               {/* LEFT: Course Info */}
               <div className="flex gap-3 items-center">
@@ -53,7 +84,7 @@ const Enrolled = () => {
                   className="w-12 h-12 rounded object-cover"
                 />
                 <div>
-                  <p className="font-medium">{course?.coursename}</p>
+                  <p className="font-medium">{course?.courseName}</p>
                   <p className="text-xs text-gray-400">
                     {course?.coursedescription}
                   </p>
@@ -68,11 +99,12 @@ const Enrolled = () => {
               {/* RIGHT: Progress */}
               <div className="flex flex-col items-end gap-1">
                 <p className="text-xs">
-                  Progress: {course?.progressPercentage || 0}%
+                  Progress: {progressMap[course._id] ?? 0}%{" "}
+                  {/* ✅ read from map */}
                 </p>
                 <div className="w-32">
                   <ProgressBar
-                    completed={course?.progressPercentage || 0}
+                    completed={progressMap[course._id] ?? 0} // ✅ read from map, never a Promise
                     height="6px"
                     isLabelVisible={false}
                   />

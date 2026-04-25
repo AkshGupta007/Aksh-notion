@@ -166,6 +166,8 @@ exports.createsubsection = async (req, res) => {
       title,
       description,
       video: videoupload.secure_url,
+      timeduration: Math.round(videoupload.duration) || 0, // ✅ Cloudinary gives duration in seconds
+
     });
 
     await Section.findByIdAndUpdate(

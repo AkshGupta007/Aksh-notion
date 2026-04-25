@@ -20,6 +20,11 @@ const {
   deleteinstructorcourse,
 } = require("../controllers/course");
 
+
+/// course progress controler
+
+const { markLectureAsComplete ,getCourseProgress} = require("../controllers/CourseProgress");
+
 /// categories controllers import
 
 const { createCategory, getallCategory, getcategorypagedetails }= require('../controllers/Category');
@@ -71,4 +76,8 @@ router.post('/createreview', Authorization,isstudent, createreview);
 router.get('/getaveragerating', getavgrating);
 router.get('/getallreviews', allreviews);
 
+///////// course progress routes//////////
+
+router.post('/marklecturecomplete', Authorization,isstudent, markLectureAsComplete);
+router.post('/getcourseprogress', Authorization,isstudent, getCourseProgress);
 module.exports=router;

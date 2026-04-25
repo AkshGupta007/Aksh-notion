@@ -44,6 +44,12 @@ export const CREATE_SUBSECTION_API = `${BASE_URL}/course/createsubsection`;
 export const UPDATE_SUBSECTION_API = `${BASE_URL}/course/updatesubsection`;
 export const DELETE_SUBSECTION_API = `${BASE_URL}/course/deletesubsection`;
 
+
+export const CREATE_RATINGANDREVIEW_API = `${BASE_URL}/course/createreview`;
+
+
+export const MARK_LECTURE_COMPLETE_API = `${BASE_URL}/course/marklecturecomplete`;
+export const GET_COURSE_PROGRESS_API = `${BASE_URL}/course/getcourseprogress`;
 // console.log("BASE_URL:", process.env.REACT_APP_BASE_URL);
 
 

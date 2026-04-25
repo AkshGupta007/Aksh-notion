@@ -22,6 +22,9 @@ import Mycourses from './components/core/Dashboard/Mycourses'
 import Editcourse from './components/core/Dashboard/editcourse/Editcourse'
 import Categorypage from './Pages/Categorypage'
 import CoursePage from './Pages/CoursePage'
+import ViewCourse from './Pages/ViewCourse'
+import VideoPlayer from './components/core/Dashboard/ViewCourse/VideoPlayer'
+
 const App = () => {
   // constants.js
  
@@ -43,7 +46,7 @@ const App = () => {
         <Route path="/verify-email" element={<Verifyemail />} />
         <Route path="about" element={<About />} />
         <Route path="/catalog/:categoryName" element={<Categorypage />} />
-        <Route path="/course/:courseId" element={<CoursePage/>} />
+        <Route path="/course/:courseId" element={<CoursePage />} />
 
         <Route
           path="/dashboard"
@@ -71,6 +74,25 @@ const App = () => {
             </>
           )}
         </Route>
+
+        <Route
+        
+          element={
+            <Privateroute>
+              <ViewCourse />
+            </Privateroute>
+          }
+        >
+          { user?.accounttype === ACCOUNT_TYPES.USER &&
+            ( 
+             <>
+
+              <Route   path="/view-course/courseId/:courseId/sectionId/:sectionId/subSectionId/:subSectionId" element={<VideoPlayer/>}></Route>
+             </>
+            )
+
+          }
+          </Route>
       </Routes>
       <Footer />
     </div>
