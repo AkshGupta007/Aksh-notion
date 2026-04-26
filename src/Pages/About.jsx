@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../assests/7211597-most-popular-naruto-wallpaper-hd-for-desktop-full-hd-1080p-for-pc-desktop-best-naruto-wallpaper-naruto-wallpaper-wallpaper-naruto-shippuden.jpg"
+
 import Gridsection from '../components/core/Gridsection';
 import Contactform from '../components/core/Contactform';
 import img1 from "../assests/about us 1.jpg"
@@ -48,17 +48,20 @@ const About = () => {
             <img
               src={img1}
               className="w-80 h-60 object-contain"
+              alt="about us image 1"
               loading="lazy"
             />
             <img
               src={img2}
               className="w-80 h-60 object-contain"
+              alt="about us image 2"
               loading="lazy"
             />
             <img
               src={img3}
               className="w-80 h-60 object-contain"
               loading="lazy"
+              alt="about us image 1"
             />
           </div>
         </div>
@@ -108,7 +111,7 @@ const About = () => {
         </div>
 
         <div className="flex items-center justify-evenly mt-8 ml-8">
-          <div className='gap-10'>
+          <div className="gap-10">
             <h1
               className="bg-gradient-to-l from-yellow-300  to-yellow-900 
         bg-clip-text text-transparent text-3xl font-bold mb-4"
@@ -125,7 +128,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className=''>
+          <div className="">
             <h1
               className="bg-gradient-to-l from-blue-300 to-blue-700
           bg-clip-text text-transparent text-3xl font-bold mb-4"
@@ -145,37 +148,29 @@ const About = () => {
         </div>
       </section>
 
-
       {/**section4 */}
 
-      <section className='bg-gray-800 h-32 mt-12'>
-        <div className='flex items-center justify-evenly text-white pt-7'>
-            {
-                datastrip.map((item,index)=>{
-                   return(
-                    <div key={index} className=''>
-                        <h1 className='font-bold text-2xl'>{item.count}</h1>
-                        <h2 className='text-zinc-400'>{item.title}</h2>
-                            
- 
-                    </div>
-                   )
-                    
-                }
-                )}
+      <section className="bg-gray-800 h-32 mt-12">
+        <div className="flex items-center justify-evenly text-white pt-7">
+          {datastrip.map((item, index) => {
+            return (
+              <div key={index} className="">
+                <h1 className="font-bold text-2xl">{item.count}</h1>
+                <h2 className="text-zinc-400">{item.title}</h2>
+              </div>
+            );
+          })}
         </div>
-
       </section>
 
       {/**grid sectionnnnn */}
 
       <section>
-
-        <Gridsection/>
+        <Gridsection />
       </section>
 
       <section>
-        <Contactform/>
+        <Contactform />
       </section>
     </div>
   );

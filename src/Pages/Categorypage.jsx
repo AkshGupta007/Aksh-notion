@@ -42,6 +42,8 @@ const Categorypage = () => {
 
             setcategorypagedetails(response);
 
+            console.log("categorypagedetails",response)
+
         }catch(error)
         {console.error()};
         
@@ -82,7 +84,7 @@ const Categorypage = () => {
           <button className="text-gray-400 hover:text-white">New</button>
         </div>
 
-        <div className='px-96'>
+        <div className="px-96">
           <CourseSwipper
             course={categoryPagedetails?.selectedcategory?.courses}
           />
@@ -97,7 +99,11 @@ const Categorypage = () => {
         </h2>
 
         <CourseSwipper
-          course={categoryPagedetails?.differentcategories?.courses}
+          course={
+            categoryPagedetails?.differentcategories
+              ?.map((cat) => cat.courses || [])
+              ?.flat() || []
+          }
         />
       </div>
 

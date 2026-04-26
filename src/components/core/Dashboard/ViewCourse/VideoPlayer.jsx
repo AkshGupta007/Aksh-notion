@@ -40,7 +40,7 @@ const VideoPlayer = () => {
       }
     };
     setVideoSpecificDetails();
-  }, [courseSectionData, courseId, sectionId, subSectionId, location.pathname]);
+  }, [courseSectionData, courseId, sectionId, subSectionId, location.pathname, navigate]);
 
   const isFirstVideo = () => {
     const si = courseSectionData?.findIndex((d) => d._id === sectionId);

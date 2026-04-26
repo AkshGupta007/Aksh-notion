@@ -59,6 +59,11 @@ const Loginform = () => {
           Create account
         </Link>
       </p>
+
+
+    <button onClick={()=>navigate("/forgotpassword") }className="text-sm text-gray-400">
+      FORGOT PASSWORD
+    </button>
     </form>
   )};
 

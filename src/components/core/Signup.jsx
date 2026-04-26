@@ -31,9 +31,15 @@ const RegisterForm = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(setSignup(formData));
-    dispatch(sendOtp(formData.email, navigate));
-  };
+
+    // normalize email to lowercase
+    const normalizedData = {
+      ...formData,
+      email: formData.email.toLowerCase(),
+    };
+    dispatch(setSignup(normalizedData));
+    dispatch(sendOtp(normalizedData.email, navigate));
+  };;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-blue-100 relative overflow-hidden px-4">

@@ -9,7 +9,7 @@ import Rendersteps from '../Addcourse/Rendersteps';
 const Editcourse = () => {
     const dispatch=useDispatch();
      const [courses,setcourses]=useState([]);
-     const[Loading,setLoading]=useState(false);
+    //  const[Loading,setLoading]=useState(false);
      const {token}=useSelector((state)=>state.auth);
       const { course} = useSelector((state) => state.course);
 

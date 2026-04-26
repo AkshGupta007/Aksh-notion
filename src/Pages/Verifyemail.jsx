@@ -26,13 +26,15 @@ const Verifyemail = () => {
 
         e.preventDefault();
         const {
-          firstName,
+         
           lastName,
           email,
           password,
           confirmPassword,
           accountType
         } = signup;
+
+        const firstName=signup.firstName.toLowerCase();
 
         console.log("Sending data:", {
           firstName,
@@ -43,7 +45,7 @@ const Verifyemail = () => {
           otp,
           accountType
         });
-
+           
 
         dispatch(
           signUp(

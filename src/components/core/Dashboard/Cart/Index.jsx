@@ -1,6 +1,4 @@
 import React from "react";
-import { FaStar } from "react-icons/fa6";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
 import ReactStars from "react-stars";
 import { IoTrashBin } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
