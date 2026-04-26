@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { apiconnector } from "./apiconnector";
 import { setPaymentLoading } from "../slices/Courseslice";
 import { resetcart } from "../slices/Cartslice";
-import{ORDER_RESPONSE_API,COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} from "./apis"
+import{ORDER_RESPONSE_API,COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API,SEND_CONTACT_US_QUERY_API} from "./apis"
 
 // router.post("/capturepayment", Authorization, isstudent, capturepayment);
 // router.post("/verifysignature", isstudent, verifyPayment);
@@ -161,5 +161,21 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
   } finally {
     toast.dismiss(toastId);
     dispatch(setPaymentLoading(false));
+  }
+}
+
+
+
+export const sendcontactusquery= async(formData)=>{
+  const toastId = toast.loading("Sending your query...");
+  try {
+    const response = await apiconnector("POST", SEND_CONTACT_US_QUERY_API, formData,{})
+    toast.success("Your query has been sent successfully!");
+    return response.data;
+  } catch (error) {
+    console.error("SEND CONTACT US QUERY ERROR...", error);
+    toast.error("Failed to send your query. Please try again.");
+  } finally {
+    toast.dismiss(toastId);
   }
 }

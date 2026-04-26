@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assests/OIP.jpeg";
 import { SocialIcon } from "react-social-icons";
+import thumbnail from "../../assests/png logo.png";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           {/* Company */}
           <div className="flex flex-col gap-2">
-            <img src={logo} alt="logo" width={99} />
+            <img src={thumbnail} alt="logo" width={99} />
             <h3 className="text-white font-semibold">Company</h3>
             <p className="hover:text-white transition-colors">About</p>
             <p className="hover:text-white transition-colors">Careers</p>

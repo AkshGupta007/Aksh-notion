@@ -4,6 +4,7 @@ import SidebarLink from "./SidebarLink";
 import ConfirmationModal from "../../common/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../Services/authApi";
+import { LuLogOut } from "react-icons/lu";
 
 const Sidebar = () => {
   const { user, loading } = useSelector((state) => state.profile);
@@ -52,13 +53,6 @@ const Sidebar = () => {
       icon: "VscMortarBoard",
     },
     {
-      id: 6,
-      name: "Purchase History",
-      path: "/dashboard/purchase-history",
-      type: "user",
-      icon: "VscHistory",
-    },
-    {
       id: 7,
       name: "Wishlist",
       path: "/dashboard/cart",
@@ -100,6 +94,7 @@ const Sidebar = () => {
             })
           }
         >
+          <LuLogOut className="inline-block mr-2" />
           LOGOUT
         </button>
       </div>

@@ -2,6 +2,10 @@ import React from 'react'
 import logo from "../assests/7211597-most-popular-naruto-wallpaper-hd-for-desktop-full-hd-1080p-for-pc-desktop-best-naruto-wallpaper-naruto-wallpaper-wallpaper-naruto-shippuden.jpg"
 import Gridsection from '../components/core/Gridsection';
 import Contactform from '../components/core/Contactform';
+import img1 from "../assests/about us 1.jpg"
+import img2 from "../assests/about us2.jpg"
+import img3 from "../assests/about us 3.jpg"
+import img4 from "../assests/about us4.jpg"
 const About = () => {
 
     const datastrip = [
@@ -26,34 +30,34 @@ const About = () => {
     <div className="min-h-screen ">
       {/* section 1 */}
 
-      <section className="text-white  mt-0   bg-cyan-900">
+      <section className="text-white  mt-0  relative h-96 bg-cyan-900">
         <div className="w-11/12 flex flex-col  gap-8 justify-center items-center mx-auto">
-          <h1 className="text-bold text-3xl mt-16 ">
+          <h1 className="text-bold text-3xl mt-16 text-red-400 ">
             Driving Innovation in Online Education for
             <span className="block text-center"> a Brighter Future</span>
           </h1>
 
-          <p className=" text-center w-7/12 h-3">
+          <p className=" text-center w-7/12 h-3 pb-3">
             Studynotion is at the forefront of driving innovation in online
             education. We're passionate about creating a brighter future by
             offering cutting-edge courses, leveraging emerging technologies, and
             nurturing a vibrant learning community.
           </p>
 
-          <div className="flex gap-20 h-64">
+          <div className="flex gap-20 h-64 absolute translate-x-6 translate-y-72">
             <img
-              src={logo}
-              className="w-80 h-96 object-contain"
+              src={img1}
+              className="w-80 h-60 object-contain"
               loading="lazy"
             />
             <img
-              src={logo}
-              className="w-80 h-96 object-contain"
+              src={img2}
+              className="w-80 h-60 object-contain"
               loading="lazy"
             />
             <img
-              src={logo}
-              className="w-80 h-96 object-contain"
+              src={img3}
+              className="w-80 h-60 object-contain"
               loading="lazy"
             />
           </div>
@@ -63,7 +67,7 @@ const About = () => {
       {/*section 2 */}
 
       <section className="mt-28">
-        <p className="text-white text-4xl w-8/12 mx-auto">
+        <p className="text-white text-4xl w-8/12 mx-auto pt-10">
           We are passionate about revolutionizing the way we learn. Our
           innovative platform{" "}
           <span className="text-blue-600">combines technology</span>,{" "}
@@ -100,7 +104,7 @@ const About = () => {
               from all walks of life to unlock their full potential.
             </p>
           </div>
-          <img src={logo} className="w-80 h-96 object-contain" loading="lazy" />
+          <img src={img4} className="w-80 h-96 object-contain" loading="lazy" />
         </div>
 
         <div className="flex items-center justify-evenly mt-8 ml-8">

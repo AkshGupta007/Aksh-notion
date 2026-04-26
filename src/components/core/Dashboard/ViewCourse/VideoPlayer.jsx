@@ -143,7 +143,7 @@ const VideoPlayer = () => {
 
           {/* End-of-video controls */}
           {videoEnded && (
-            <div className="flex flex-wrap items-center gap-3 px-6 py-4 bg-gray-900 border-t border-gray-700">
+            <div className=" absolute flex flex-wrap items-center gap-3 px-6 py-4 bg-gray-900 border-t border-gray-700">
               {/* Rewatch */}
               <button
                 onClick={() => {
@@ -153,7 +153,7 @@ const VideoPlayer = () => {
                   }
                   setVideoEnded(false);
                 }}
-                className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold transition"
               >
                 ↩ Rewatch
               </button>
@@ -162,7 +162,7 @@ const VideoPlayer = () => {
               {!isFirstVideo() && (
                 <button
                   onClick={goToPrevVideo}
-                  className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition"
+                  className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold transition"
                 >
                   ← Prev
                 </button>
@@ -172,7 +172,7 @@ const VideoPlayer = () => {
               {!isLastVideo() && (
                 <button
                   onClick={goToNextVideo}
-                  className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition"
+                  className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold transition"
                 >
                   Next →
                 </button>

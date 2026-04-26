@@ -10,9 +10,12 @@ import { apiconnector } from '../../Services/apiconnector';
 import { CATEGORIES_API} from '../../Services/apis';
 import Profiledown from '../core/homepage/Profiledown';
 import { IoIosArrowDropdown } from "react-icons/io";
+import thumbnail from "../../assests/png logo.png"
 
 const Navbar = () => {
     const token=useSelector((state)=>state.auth.token);
+
+    const{cart}=useSelector((state)=>state.cart);
     console.log("Token from Redux:", token);
 
     const{user}=useSelector((state)=>state.profile);
@@ -63,7 +66,7 @@ const Navbar = () => {
     <div className=" flex items-center border-b-[1px] border-b-zinc-500 px-4 ">
       <div className="flex w-11/12 items-center justify-between">
         <Link to="/signup">
-          <img src={logo} alt="logo" width={100} height={32} loading="lazy" />
+          <img src={thumbnail} alt="logo" width={100} height={32} loading="lazy" className='' />
         </Link>
 
         {/* van links */}
@@ -73,12 +76,12 @@ const Navbar = () => {
             {NavbarLinks.map((item, index) => (
               <li key={index}>
                 {item.title === "Catalog" ? (
-                  <div className= {clsx(
-                     'relative group flex gap-2 items-center ',
-                        Matchroute(item.path)
-                          ? "text-yellow-500"
-                          : "text-white",
-                      ) }>
+                  <div
+                    className={clsx(
+                      "relative group flex gap-2 items-center ",
+                      Matchroute(item.path) ? "text-yellow-500" : "text-white",
+                    )}
+                  >
                     {item.title}
                     <IoIosArrowDropdown />
 
@@ -101,7 +104,6 @@ const Navbar = () => {
                             >
                               {item.name}
                             </Link>
-                          
                           </div>
                         ))
                       ) : (
@@ -128,15 +130,17 @@ const Navbar = () => {
         </nav>
 
         {/* login/sign/ button */}
-        <div className="flex gap-x-4 items-center">
-          {user &&
-            user?.accounttype ===
-              "user"&&(
-                <Link to="/dashboard/cart" className="relative">
-                  <CiShoppingCart className='bg-white'/>
-                  {totalitems > 0 && <span>{totalitems}</span>}
-                </Link>
+        <div className="flex gap-x-4 items-center ">
+          {user && user?.accounttype === "user" && (
+            <Link to="/dashboard/cart" className="relative mt-6 ml-2 mr-3 mb-2 text-2xl">
+              <CiShoppingCart className="text-white" />
+              {cart.length >= 0 && (
+                <span className="absolute -top-2 -right-2 bg-yellow-100 text-black text-xs font-bold rounded-full px-2 py-0.5">
+                  {cart.length}
+                </span>
               )}
+            </Link>
+          )}
 
           {!token && (
             <Link to="/login">

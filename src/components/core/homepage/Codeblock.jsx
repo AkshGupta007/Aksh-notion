@@ -1,15 +1,30 @@
-import React from 'react'
-import CTBUTTON from './CTBUTTON'
-import { TypeAnimation } from 'react-type-animation';
-const Codeblock = ({positions, heading, subheading, ct1, ct2, code, codecolor, backgroundgradient}) => {
+import React from "react";
+import CTBUTTON from "./CTBUTTON";
+import { TypeAnimation } from "react-type-animation";
+
+const Codeblock = ({
+  positions,
+  heading,
+  subheading,
+  ct1,
+  ct2,
+  code,
+  codecolor,
+  backgroundgradient,
+}) => {
+  const lines = code.split("\n");
+
   return (
-    <div className={"flex " + positions + " my-20 justify-between gap-10"}>
-      <div className="w-[50%] flex flex-col gap-8">
+    <div
+      className={`flex ${positions} my-10  justify-between gap-10 flex-col lg:flex-row`}
+    >
+      {/* LEFT CONTENT */}
+      <div className="lg:w-1/2 flex flex-col gap-6">
         {heading}
 
-        <div className="text-red-300 font-bold">{subheading}</div>
+        <p className="text-gray-400 leading-relaxed">{subheading}</p>
 
-        <div className="flex gap-4 mt-7">
+        <div className="flex gap-4 mt-4">
           <CTBUTTON active={ct1.active} linkto={ct1.linkto}>
             {ct1.text}
           </CTBUTTON>
@@ -18,37 +33,38 @@ const Codeblock = ({positions, heading, subheading, ct1, ct2, code, codecolor, b
           </CTBUTTON>
         </div>
       </div>
-      <div className="flex flex-row w-fit gap-4">
-        <div className=" flex w-[10%] text-center flex-col text-zinc-600 font-sans font-bold">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
-          <p>5</p>
-          <p>6</p>
-          <p>7</p>
-          <p>8</p>
-          <p>9</p>
-          <p>10</p>
+
+      {/* RIGHT CODE BLOCK */}
+      <div
+        className={`lg:w-1/2 rounded-xl p-5 flex gap-4 font-mono text-sm shadow-lg border border-gray-700 relative overflow-hidden`}
+        style={{ background: backgroundgradient }}
+      >
+        {/* Line Numbers */}
+        <div className="text-gray-500 text-right pr-3 select-none">
+          {lines.map((_, i) => (
+            <p key={i}>{i + 1}</p>
+          ))}
         </div>
 
-        <div className=" w-[90%] flex flex-col gap-2 font-bold font-mono text-yellow-500">
+        {/* Code Content */}
+        <div className={`flex-1 ${codecolor}`}>
           <TypeAnimation
-            sequence={[code, 5000, ""]}
+            sequence={[code, 4000, ""]}
             repeat={Infinity}
             cursor={true}
-            
             style={{
               whiteSpace: "pre-line",
               display: "block",
             }}
-
-            omitDeletionAnimation={true }
+            omitDeletionAnimation={true}
           />
         </div>
+
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 pointer-events-none"></div>
       </div>
     </div>
   );
-}
+};
 
-export default Codeblock
+export default Codeblock;

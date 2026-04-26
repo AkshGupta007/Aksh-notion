@@ -19,7 +19,7 @@ const dispatch=useDispatch();
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-8">
       <div className="w-[28rem] p-6 bg-[#3a0a0a] rounded-lg shadow-lg text-white">
         {/* Icon + Title */}
         <div className="flex items-center mb-4">

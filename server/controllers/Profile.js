@@ -1,5 +1,6 @@
 const { populate } = require("../models/Category");
 const profile = require("../models/profile");
+const Course = require("../models/courses");
 const user = require("../models/users");
 
 const updateprofile = async (req, res) => {
@@ -161,4 +162,26 @@ const getenrolledcourses= async(req,res)=>{
     }
 
 }
-module.exports={updateprofile,deleteprofile,getalluserdetails,getenrolledcourses};
+
+
+// Controller: Instructor Dashboard
+const instructorDashboard = async (req, res) => {
+  try {
+    const courses = await Course.find({ instructor: req.user.id });
+
+    const courseData = courses.map(course => ({
+      _id: course._id,
+      courseName: course.courseName,
+      courseDescription: course.courseDescription,
+      totalStudentsEnrolled: course.studentsenrolled.length,
+      totalAmountGenerated: course.studentsenrolled.length * course.price,
+    }));
+
+    res.status(200).json({ courses: courseData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports={updateprofile,deleteprofile,getalluserdetails,getenrolledcourses,instructorDashboard};

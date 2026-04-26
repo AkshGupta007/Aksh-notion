@@ -131,11 +131,16 @@ exports.allreviews= async(req,res)=>{
         try{
             const allreviews= await ratingandreview.find({}).sort({ rating:-1}).populate({
                 path:"user",
-                select: " Firstname Lastname email"
             }).populate({
                 path:"course",
-                select:"coursename"
             }).exec();
+
+              if(!allreviews){
+    return response.status(400).json({
+      success:false,
+      message:"all reviews cant fetched"
+    })}
+  
             return res.status(200).json({
                 success:true,
                 message:"all reviews fetched successfully",
@@ -148,3 +153,36 @@ exports.allreviews= async(req,res)=>{
                 message:"error in fetching all reviews"
             })
         }}
+
+
+exports.getallcoursereviews = async (req, res) => {
+  try {
+    const { courseId } = req.body;
+
+    const result = await ratingandreview
+      .find({ course: courseId })
+      .populate("user") // optional: populate reviewer details
+      .populate("course"); // optional: populate course details
+
+    if (!result || result.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No reviews found for this course",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+      message: "All reviews fetched successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error in fetching course reviews",
+      error: error.message,
+    });
+  }
+};
+
+

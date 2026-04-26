@@ -8,7 +8,18 @@ import Codeblock from '../components/core/homepage/Codeblock';
 import TIMELINESECTION from '../components/core/homepage/TIMELINESECTION';
 import Learninglanguage from '../components/core/homepage/Learninglanguage';
 import Instructorsection from '../components/core/homepage/Instructorsection';
+import ReviewSlider from '../components/core/homepage/ReviewSlider';
+import { FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+import target from '../assests/homepage 1.jpg'
+
+
+
+
+
 const Home = () => {
+
   return (
     <div>
       <div className=" relative  mx-auto min-h-screen w-11/12 flex flex-col items-center text-white ">
@@ -27,7 +38,15 @@ const Home = () => {
           </Link>
         </div>
         <div className="font-bold text-4xl mt-10 text-center">
-          EMPOWER YOUR FUTURE WITH
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl font-bold text-white text-center">
+              EMPOWER YOUR FUTURE WITH
+            </h1>
+          </motion.div>
           <Highlighttext text={"CODING SKILLS"} />
         </div>
         <div>
@@ -44,7 +63,7 @@ const Home = () => {
             LEARN MORE
           </CTBUTTON>
 
-          <CTBUTTON linkto={"/login"} active={false}>
+          <CTBUTTON linkto={"/contact"} active={false}>
             BOOK A DEMO
           </CTBUTTON>
         </div>
@@ -57,7 +76,7 @@ const Home = () => {
 
         {/* CODE SECTION 1 */}
 
-        <div className="mt-10">
+        <div className="mt-44">
           <Codeblock
             positions={"lg:flex-row"}
             heading={
@@ -74,7 +93,11 @@ const Home = () => {
                 their knowledge with you.
               </p>
             }
-            ct1={{ active: true, linkto: "/signup", text: "TRY IT YOURSELF" }}
+            ct1={{
+              active: true,
+              linkto: "/signup",
+              text: `TRY IT YOURSELF ->}`,
+            }}
             ct2={{ active: false, linkto: "/login", text: "LEARN MORE" }}
             code={
               ' <!DOCTYPE html>\n <html lang="en">\n <head>\n      <meta http-equiv="X-UA-Compatible" content="IE=edge">\n     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n     <title>Document</title>\n </head>\n <body>\n  </body>\n </html>'
@@ -82,14 +105,13 @@ const Home = () => {
           />
         </div>
         {/* CODE SECTION 2 */}
-        <div className="mt-10">
+        <div className="">
           <Codeblock
             positions={"lg:flex-row-reverse"}
             heading={
               <div className="text-4xl font-semibold">
-                Unlock your
-                <Highlighttext text={"CODING POTENTIAL"} />
-                with our online courses.
+                START
+                <Highlighttext text={"CODING IN SECONDS"} />
               </div>
             }
             subheading={
@@ -99,7 +121,7 @@ const Home = () => {
                 their knowledge with you.
               </p>
             }
-            ct1={{ active: true, linkto: "/signup", text: "TRY IT YOURSELF" }}
+            ct1={{ active: true, linkto: "/signup", text: "CONTINUE LESSONS" }}
             ct2={{ active: false, linkto: "/login", text: "LEARN MORE" }}
             code={
               ' <!DOCTYPE html>\n <html lang="en">\n <head>\n      <meta http-equiv="X-UA-Compatible" content="IE=edge">\n     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n     <title>Document</title>\n </head>\n <body>\n  </body>\n </html>'
@@ -155,17 +177,18 @@ const Home = () => {
 
       {/*section 3*/}
 
-      <div className='w-11/12 flex mx-auto flex-col items-center justify-between gap-8  text-white  '>
-         <Instructorsection/>
+      <div className="w-11/12 flex mx-auto flex-col items-center justify-between gap-8  text-white  ">
+        <Instructorsection />
 
-         <h2 className='mt-8 font-extrabold text-4xl'> REVIEWS FROM OTHER LEARNERS </h2>
+        <h2 className="mt-8 font-extrabold text-4xl">
+          {" "}
+          REVIEWS FROM OTHER LEARNERS{" "}
+        </h2>
 
-
+        <ReviewSlider />
       </div>
 
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 }

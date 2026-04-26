@@ -24,6 +24,8 @@ import Categorypage from './Pages/Categorypage'
 import CoursePage from './Pages/CoursePage'
 import ViewCourse from './Pages/ViewCourse'
 import VideoPlayer from './components/core/Dashboard/ViewCourse/VideoPlayer'
+import InstructorDashboard from './Pages/InstructorDashboard'
+import ContactUs from './Pages/ContactUs'
 
 const App = () => {
   // constants.js
@@ -47,6 +49,7 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="/catalog/:categoryName" element={<Categorypage />} />
         <Route path="/course/:courseId" element={<CoursePage />} />
+        <Route path="/Contact" element={<ContactUs />} />
 
         <Route
           path="/dashboard"
@@ -71,6 +74,7 @@ const App = () => {
               <Route path="add-course" element={<Addcourse />} />
               <Route path="My-courses" element={<Mycourses />} />
               <Route path="edit-course/:courseId" element={<Editcourse />} />
+              <Route path="instructor" element={<InstructorDashboard />} />
             </>
           )}
         </Route>

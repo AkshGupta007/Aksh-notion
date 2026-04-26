@@ -50,7 +50,7 @@ localStorage.setItem("user", JSON.stringify(updatedUser));
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-zinc-600 text-white p-6 rounded-md  "
+      className="flex flex-col bg-[#0f172a] border border-gray-700 rounded-xl p-6 mt-8 shadow-md  text-yellow-50 font-semibold"
     >
       <h1 className="text-xl font-bold">PROFILE INFORMATION</h1>
 

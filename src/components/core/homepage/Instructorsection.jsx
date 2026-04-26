@@ -1,30 +1,28 @@
 import React from 'react'
 import logo1 from "../../../assests/9672621-naruto-desktop-wallpaper-4k.png"
+import image from "./../../../assests/images.jpeg"
 import Highlighttext from './Highlighttext';
 import CTBUTTON from './CTBUTTON';
 const Instructorsection = () => {
   return (
-    <div className='mt-16'>
+    <div className="mt-16">
       <div className="flex flex-row gap-20  justify-between items-center">
-        <div className="w-[50%] ">
-          <img src={logo1} />
+        <div className="">
+          <img src={image} alt={"instructor image"} className='w-11/12 h-96' />
         </div>
         <div className="flex flex-col w-[50%] gap-10">
-          <div className='text-4xl font-semibold w-[50%] '>
-            <p className='inline-block'>Become An</p>
+          <div className="text-4xl font-semibold w-[50%] ">
+            <p className="inline-block">Become An</p>
             <Highlighttext text={"instructor"} />
           </div>
 
-          <p className='text-16px w-[80%] font-medium text-zinc-300 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, voluptatem voluptas odit optio adipisci, nesciunt nemo perspiciatis debitis tenetur, molestias est modi doloribus voluptate quo vel dolore eaque? Praesentium, accusamus!</p>
-         
-         
-          <div className='w-fit'>
+          <p className="text-base w-[80%] font-medium text-zinc-300">
+            Your journey to better skills starts here. Learn, practice, and
+            succeed here.
+          </p>
 
-            <CTBUTTON active={true}>
-                Start teaching today
-
-            </CTBUTTON>
-
+          <div className="w-fit">
+            <CTBUTTON active={true} linkto={"/signup"}>Start teaching today</CTBUTTON>
           </div>
         </div>
       </div>

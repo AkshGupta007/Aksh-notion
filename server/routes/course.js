@@ -39,7 +39,7 @@ const{ createsubsection, deletesubsection, updatesubsection }=require('../contro
 
 //// rating controllers import
 
-const{ createreview,getavgrating, allreviews }=require('../controllers/ratingAndreview');
+const{ createreview,getavgrating, allreviews,getallcoursereviews }=require('../controllers/ratingAndreview');
 
 
 
@@ -75,6 +75,7 @@ router.delete('/deletesubsection',Authorization, isInstructor, deletesubsection)
 router.post('/createreview', Authorization,isstudent, createreview);
 router.get('/getaveragerating', getavgrating);
 router.get('/getallreviews', allreviews);
+router.post('/getallcoursereviews',getallcoursereviews);
 
 ///////// course progress routes//////////
 

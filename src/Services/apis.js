@@ -46,10 +46,15 @@ export const DELETE_SUBSECTION_API = `${BASE_URL}/course/deletesubsection`;
 
 
 export const CREATE_RATINGANDREVIEW_API = `${BASE_URL}/course/createreview`;
-
+export const GET_ALL_REVIEWS_API = `${BASE_URL}/course/getallreviews`;
+export const GET_ALL_COURSE_REVIEWS_API = `${BASE_URL}/course/getallcoursereviews`;
 
 export const MARK_LECTURE_COMPLETE_API = `${BASE_URL}/course/marklecturecomplete`;
 export const GET_COURSE_PROGRESS_API = `${BASE_URL}/course/getcourseprogress`;
+
+export const INSTRUCTOR_DASHBOARD_API = `${BASE_URL}/profile/instructordashboard`;
+
+export const SEND_CONTACT_US_QUERY_API = `${BASE_URL}/user/contactus`;
 // console.log("BASE_URL:", process.env.REACT_APP_BASE_URL);
 
 

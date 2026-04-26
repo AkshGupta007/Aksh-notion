@@ -1,53 +1,69 @@
-import React from 'react';
-import logo from '../../../assests/407659.jpg'
-import img from '../../../assests/135625.jpg'
-
+import React from "react";
+import target from "../../../assests/homepage 1.jpg";
+import leadership from "../../../assests/leadership.jpg"
 
 const TIMELINESECTION = () => {
-    const data = [
-      { logo: logo, Title: " LEADERSHIP ", Description: " FULLY COMMITED FOR SUCCCESS" },
-      { logo: logo, Title: " RESPONSIBLITY ", Description: " FULLY COMMITED FOR SUCCCESS" },
-      { logo: logo, Title: " FLEXIBLITY", Description: " FULLY COMMITED FOR SUCCCESS" },
-      { logo: logo, Title: " SOLVE THE PROBLEM ", Description: " FULLY COMMITED FOR SUCCCESS" },
-    ];
-  return (
-    <div>
-      <div className="flex flex-row items-center">
-        <div className="w-[45%] flex flex-col gap-5">
-          {data.map((item, index) => {
-            return (
-              <div key={index}>
-                <div className="flex flex-row gap-6">
-                  <div className="w-[50px] h-[50px] flex items-center bg-white">
-                    <img src={item.logo} alt={item.Title} />
-                  </div>
+  const data = [
+    { logo: leadership, title: "Leadership", desc: "Fully committed to success" },
+    { logo: leadership, title: "Responsibility", desc: "Take ownership of your learning" },
+    { logo: leadership, title: "Flexibility", desc: "Learn anytime, anywhere" },
+    { logo: leadership, title: "Problem Solving", desc: "Think and build real solutions" },
+  ];
 
-                  <div className="flex flex-col">
-                    <h3 className="font-semibold text-16px ">{item.Title}</h3>
-                    <p className="text-sm">{item.Description}</p>
-                  </div>
-                </div>
+  return (
+    <div className="w-full mt-16">
+      <div className="flex flex-col lg:flex-row items-center ">
+        {/* LEFT SECTION */}
+        <div className="lg:w-1/2 flex flex-col gap-8">
+          {data.map((item, index) => (
+            <div key={index} className="flex items-start gap-5">
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
+                <img
+                  src={item.logo}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            );
-          })}
+
+              {/* Text */}
+              <div>
+                <h3 className="font-semibold text-lg text-gray-800">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-500">{item.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="relative w-[40%] shadow-blue-200 py-2 " >
-          <img src={img} className="object-cover shadow-white h-fit"></img>
-          <div className=" absolute flex bg-green-950 flex-row text-white uppercase py-10 left-[15%] translate-y-[-30%]">
-            <div className="flex flex-row gap-2 items-center  border-r border-green-700">
-              <p className="text-3xl font-bold"> 10</p>
-              <p className="text-green-300 text-sm"> YEARS OF EXPERIENCE </p>
+        {/* RIGHT SECTION */}
+        <div className="lg:w-1/2 relative">
+          {/* Image */}
+          <img
+            src={target}
+            alt="timeline"
+            className="w-full rounded-xl shadow-lg object-center h-80"
+          />
+
+          {/* Stats Card */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#022c22] text-white rounded-lg px-6 py-4 flex gap-6 shadow-xl">
+            {/* Experience */}
+            <div className="flex items-center gap-2 border-r border-green-700 pr-4">
+              <p className="text-2xl font-bold">10+</p>
+              <p className="text-green-300 text-xs">Years of Experience</p>
             </div>
-            <div className="flex flex-row gap-2 mx-3 items-center">
-              <p className="text-3xl font-bold"> 250</p>
-              <p className="text-green-300 text-sm"> TYPES OF COURSES</p>
+
+            {/* Courses */}
+            <div className="flex items-center gap-2">
+              <p className="text-2xl font-bold">250+</p>
+              <p className="text-green-300 text-xs">Courses Available</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default TIMELINESECTION
+export default TIMELINESECTION;

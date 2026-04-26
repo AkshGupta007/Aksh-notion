@@ -9,7 +9,7 @@ import CourseCard from "../components/core/Dashboard/Course details/CourseCard";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { FiChevronRight } from "react-icons/fi";
 import { HiOutlineAcademicCap } from "react-icons/hi";
-
+import CourseReviews from "../components/core/Dashboard/Course details/CourseReviews";
 const CoursePage = () => {
   const { courseId } = useParams();
   const [coursedata, setcoursedata] = useState(null);
@@ -161,6 +161,8 @@ const CoursePage = () => {
       </div>
 
       {confirmationModal && <ConfirmationModal modaldata={confirmationModal} />}
+
+      <CourseReviews courseId={courseId}/>
     </div>
   );
 };

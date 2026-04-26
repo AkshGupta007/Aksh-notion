@@ -3,26 +3,38 @@ import Highlighttext from './Highlighttext'
 import img1 from '../../../assests/7211597-most-popular-naruto-wallpaper-hd-for-desktop-full-hd-1080p-for-pc-desktop-best-naruto-wallpaper-naruto-wallpaper-wallpaper-naruto-shippuden.jpg'
 import img2 from '../../../assests/9672612-akatsuki-naruto-desktop-wallpaper-r.jpg'
 import img3 from '../../../assests/9672621-naruto-desktop-wallpaper-4k.png'
+
+import hp1 from "../../../assests/homepage 1.jpg"
+import hp2 from "../../../assests/homepage 2.jpg"
+import hp3 from "../../../assests/homepage 3.jpg"
 const Learninglanguage = () => {
   return (
-    <div className="mt-32">
+    <div className="mt-32 mb-2">
       <div className="flex flex-col gap-5">
-        <div className="text-4xl text-center font-semibold">
-          <h1 className="inline-block"> My Life</h1>
+        <div className="text-4xl text-center font-semibold underline decoration-yellow-400 underline-offset-8">
           <Highlighttext text={"KNOWLEDGE IS KEY TO SUCCESS"} />
         </div>
 
         <div className="text-center mx-auto text-zinc-700 text-base mt-3 font-medium w-[60%]">
-          Lorem ipsum dolor, sit amet consectetucing elit. Nemo animi fuga
-          ipsam, quisquam, eveniet nam consequuntur ex dolorem quibusdam vero
-          odit voluptatibus modi atque minima iste veniam perferendis, alias
-          exercitationem?
+          <p className="text-base  font-medium text-black leading-relaxed">
+            Knowledge is the foundation of growth and the key to unlocking new
+            opportunities. At StudyNotion, we believe learning should be
+            accessible, practical, and empowering. Our platform is designed to
+            help you gain knowledge that truly matters in the real world. Go
+            beyond theory and understand concepts with clarity and purpose.
+            Build skills that not only educate but also transform your thinking.
+            Learn from structured courses crafted to simplify complex ideas.
+            Stay curious, keep exploring, and never stop asking questions.
+            Knowledge gained today becomes the strength you rely on tomorrow.
+            Turn your learning into action and your action into success. With
+            StudyNotion, every step forward is a step toward a smarter future.
+          </p>
         </div>
 
         <div className="flex flex-row items-center justify-center mt-10">
-          <img src={img1} className="object-contain w-[30%] h-60"></img>
+          <img src={hp2} className="object-contain w-[30%] h-60"></img>
 
-          <img src={img2} className="object-contain w-[30%] h-60 "></img>
+          <img src={hp3} className="object-contain w-[30%] h-60 "></img>
 
           <img src={img3} className="object-contain w-[30%] h-60 ml-4"></img>
         </div>
