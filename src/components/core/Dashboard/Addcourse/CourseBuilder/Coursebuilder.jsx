@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Nestedview } from "./Nestedview";
+import  Nestedview  from "./Nestedview";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setStep,

@@ -33,7 +33,7 @@ const Learninglanguage = () => {
 
           <img src={hp3} className="object-contain w-[30%] h-60 " alt='text'></img>
 
-          <img src={img3} className="object-contain w-[30%] h-60 ml-4"  alt='text'></img>
+          <img src={hp1} className="object-contain w-[30%] h-60 ml-4"  alt='text'></img>
         </div>
       </div>
     </div>
