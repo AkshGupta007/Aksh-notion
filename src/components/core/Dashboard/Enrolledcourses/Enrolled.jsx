@@ -11,6 +11,45 @@ const Enrolled = () => {
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
+//   const calculateProgress = async (course) => {
+//     const totalLectures =
+//       course?.coursecontent?.reduce(
+//         (acc, sec) => acc + sec.subsections.length,
+//         0,
+//       ) || 0;
+
+//     if (totalLectures === 0) return 0;
+
+//     const res = await getCourseProgress(course._id, token);
+//     const completed = res?.completedsubsections?.length || 0; // ✅ correct field
+
+//     return Math.round((completed / totalLectures) * 100);
+//   };
+
+  
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const response = await getUserEnrolledCourses(token);
+//       setCourses(response);
+//       const map = {};
+//       await Promise.all(
+//         response.map(async (course) => {
+//           map[course._id] = await calculateProgress(course);
+//         }),
+//       );
+//       setProgressMap(map);
+//     } catch (error) {
+//       console.log("error", error);
+//       setCourses([]);
+//     }
+//   };
+
+
+//   if (token) fetchData();
+// }, [token]);
+
+useEffect(() => {
   const calculateProgress = async (course) => {
     const totalLectures =
       course?.coursecontent?.reduce(
@@ -21,7 +60,7 @@ const Enrolled = () => {
     if (totalLectures === 0) return 0;
 
     const res = await getCourseProgress(course._id, token);
-    const completed = res?.completedsubsections?.length || 0; // ✅ correct field
+    const completed = res?.completedsubsections?.length || 0;
 
     return Math.round((completed / totalLectures) * 100);
   };
@@ -29,10 +68,7 @@ const Enrolled = () => {
   const fetchData = async () => {
     try {
       const response = await getUserEnrolledCourses(token);
-      console.log("raw response is", response);
       setCourses(response);
-
-      // ✅ calculate progress for all courses in parallel after fetch
       const map = {};
       await Promise.all(
         response.map(async (course) => {
@@ -46,12 +82,8 @@ const Enrolled = () => {
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
-
+  if (token) fetchData();
+}, [token]);
   return (
     <div className="text-white w-full">
       {courses?.length === 0 ? (
