@@ -480,12 +480,13 @@ export const deleteinstructorcourse = async (courseId,token) => {
 export const fetchcoursedetails = async (courseId,token) => {
   let result;
   try {
+    console.log("fetching detail in services:", courseId);
     const response = await apiconnector(
       "POST",
       GET_COURSE_DETAILS_API,
       { courseId },
       {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
       },
     );
 

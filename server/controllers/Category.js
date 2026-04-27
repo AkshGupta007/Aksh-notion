@@ -49,63 +49,63 @@ exports.getallCategory= async(req,res)=>{
 };
 
 exports.getcategorypagedetails= async(req,res)=>{
-    try{
-        const {categoryid}=req.body;
-        console.log("categoryidddddddddd",categoryid);
+    try {
+      const { categoryid } = req.body;
+      console.log("categoryidddddddddd", categoryid);
 
-        const selectedcategory = await Category.findById(categoryid)
-          .populate({
-            path: "courses",
-            match: { status: "published" }, // ✅ important
-            populate: {
-              path: "instructor",
-            },
-          })
-          .exec();
-        if(!selectedcategory){
-            return res.status(404).json({
-                success:false,
-                message:"category not found"
-            })
-        }
-
-        const differentcategories = await Category.find({
-          _id: { $ne: categoryid },
+      const selectedcategory = await Category.findById(categoryid)
+        .populate({
+          path: "courses",
+          match: { status: "published" }, // ✅ important
+          populate: [
+            { path: "instructor" },
+            { path: "ratingandreview" }, // ✅ all lowercase to match schema
+          ],
         })
-          .populate({
-            path: "courses",
-            match: { status: "published" }, // ✅ important
-            populate: {
-              path: "instructor",
-            },
-          })
-          .exec();
+        .exec();
+      if (!selectedcategory) {
+        return res.status(404).json({
+          success: false,
+          message: "category not found",
+        });
+      }
 
-        const mostselling = [...selectedcategory.courses]
-          .sort(
-            (a, b) =>
-              (b.studentsenrolled?.length || 0) -
-              (a.studentsenrolled?.length || 0),
-          )
-          .slice(0, 10);
-
-
-
-
-        return res.status(200).json({
-            success:true,
-            message:"category page details fetched successfully",
-            data:{
-                selectedcategory,
-                differentcategories,
-                mostselling,
-            }
+      const differentcategories = await Category.find({
+        _id: { $ne: categoryid },
+      })
+        .populate({
+          path: "courses",
+          match: { status: "published" }, // ✅ important
+          populate: [
+            { path: "instructor" },
+            { path: "ratingandreview" }, // ✅ all lowercase to match schema
+          ],
         })
-    }
-    catch(error){
-        return res.status(500).json({
-            success:false,
-            message:"error in fetching category page details",
-        })
+        .exec();
+
+      const mostselling = [...selectedcategory.courses]
+        .sort(
+          (a, b) =>
+            (b.studentsenrolled?.length || 0) -
+            (a.studentsenrolled?.length || 0),
+        )
+        .slice(0, 10);
+
+      return res.status(200).json({
+        success: true,
+        message: "category page details fetched successfully",
+        data: {
+          selectedcategory,
+          differentcategories,
+          mostselling,
+        },
+      });
+    } catch (error) {
+      console.error("FULL ERROR:", error); // ✅ add this
+      return res.status(500).json({
+        success: false,
+        message: "error in fetching category page details",
+        error: error.message, // ✅ return error message
+      });
     }
 }

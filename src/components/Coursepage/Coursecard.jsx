@@ -3,8 +3,8 @@ import RatingStars from "../../Utils/GetRatingstar";
 
 const CourseCard = ({ course, Height = "h-96" }) => {
   const avgReviewCount =
-    course?.ratingAndReviews?.reduce((acc, review) => acc + review.rating, 0) /
-      (course?.ratingAndReviews?.length || 1) || 0;
+    course?.ratingandreview?.reduce((acc, review) => acc + review.rating, 0) /
+      (course?.ratingandreview?.length || 1) || 0;
 
   return (
     <div className="p-2 h-">
@@ -22,7 +22,7 @@ const CourseCard = ({ course, Height = "h-96" }) => {
             </p>
             <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
               <span><RatingStars reviewCount={avgReviewCount} /></span>
-              <span>({course?.ratingAndReviews?.length || 0} Ratings)</span>
+              <span>({course?.ratingandreview?.length || 0} Ratings)</span>
             </div>
             <p className="text-blue-600 font-bold mt-2">₹{course?.price}</p>
           </div>

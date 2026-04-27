@@ -50,7 +50,7 @@ router.post("/createcourse", Authorization, isInstructor, createcourse); //// co
 
 router.put('/updatecourse',Authorization,isInstructor, updateCourse); //// cousrse update by instructor
 router.get('/getallcourses', getallcourses); /// get all courses
-router.post('/getcoursedetails',Authorization, getcoursedetails); /// get course details by id
+router.post('/getcoursedetails', getcoursedetails); /// get course details by id
 router.get('/getinstructorcourses',Authorization, getInstructorCourses);
 router.post("/deleteinstructorcourse", Authorization,isInstructor,deleteinstructorcourse);
 

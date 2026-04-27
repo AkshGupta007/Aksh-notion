@@ -164,6 +164,8 @@ exports.getallcoursereviews = async (req, res) => {
       .populate("user") // optional: populate reviewer details
       .populate("course"); // optional: populate course details
 
+      console.log("getallcoursereviews result:", result);
+
     if (!result || result.length === 0) {
       return res.status(404).json({
         success: false,

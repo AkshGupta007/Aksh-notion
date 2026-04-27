@@ -16,6 +16,7 @@ const CourseReviews = ({ courseId }) => {
 
   useEffect(() => {
     const fetch = async () => {
+      console.log("fetching reviews for courseId:", courseId);
       const res = await fetchallcoursereviews(courseId);
       if (res) {
         setcourse(res);

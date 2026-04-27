@@ -22,9 +22,11 @@ const CoursePage = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await fetchcoursedetails(courseId, token);
+        console.log("coursedata in CoursePage:", res.details);
       if (res) setcoursedata(res.details);
     };
     fetch();
+  
   }, [token, courseId]);
 
   const handlebuy = () => {
@@ -37,6 +39,8 @@ const CoursePage = () => {
         <div className="w-10 h-10 rounded-full border-2 border-yellow-400 border-t-transparent animate-spin" />
       </div>
     );
+
+  
   }
 
   const {
@@ -46,11 +50,11 @@ const CoursePage = () => {
     Category,
     instructions,
     instructor,
-    ratingandreview,
     studentsenrolled,
     whatYouWillLearn,
   } = coursedata;
-
+   
+  const { ratingandreview } = coursedata;
   const rating = getAvgRating(ratingandreview);
 
   return (
@@ -90,14 +94,14 @@ const CoursePage = () => {
 
           {/* Rating Row */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="text-yellow-400 font-bold text-lg">{rating}</span>
-            <RatingStars reviewCount={rating} />
+            <span className="text-yellow-400 font-bold text-lg">Ratings</span>
+            <RatingStars reviewCount={ratingandreview?.length || 0} />
             <span className="text-white/40 text-sm">
-              ({ratingandreview?.length ?? 0} ratings)
+              ({ratingandreview?.length || 0} ratings)
             </span>
             <span className="text-white/40 text-sm">·</span>
             <span className="text-white/40 text-sm">
-              {studentsenrolled?.length ?? 0} students enrolled
+              {studentsenrolled?.length || 0} students enrolled
             </span>
           </div>
 

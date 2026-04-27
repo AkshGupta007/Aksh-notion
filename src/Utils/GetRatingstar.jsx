@@ -9,6 +9,7 @@ function RatingStars({ reviewCount, starSize = 20 }) {
   const [stars, setStars] = useState({ full: 0, half: 0, empty: 0 });
 
   useEffect(() => {
+    console.log("reviewCount in RatingStars:", reviewCount);
     const full = Math.floor(reviewCount) || 0;
     const half = Number.isInteger(reviewCount) ? 0 : 1;
     const empty = 5 - full - half;

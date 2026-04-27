@@ -34,22 +34,21 @@ const Categorypage = () => {
 
 
     useEffect(()=>{
-       const fetxh= async ()=>{
-        try{
-                 console.log("categoryidddddd", categoryid);
-            const response=await fetchPageCategories(categoryid);
-        
+      if (!categoryid) return; // ✅ prevents first null call causing 404
+      const fetxh = async () => {
+        try {
+          console.log("categoryidddddd", categoryid);
+          const response = await fetchPageCategories(categoryid);
 
-            setcategorypagedetails(response);
+          setcategorypagedetails(response);
 
-            console.log("categorypagedetails",response)
+          console.log("categorypagedetails", response);
+        } catch (error) {
+          console.error();
+        }
+      };
 
-        }catch(error)
-        {console.error()};
-        
-        };
-
-        fetxh();
+      fetxh();
     },[categoryid])
 
   return (
