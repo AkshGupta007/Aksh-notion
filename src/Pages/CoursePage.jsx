@@ -42,7 +42,6 @@ const CoursePage = () => {
   const {
     courseName,
     courseDescription,
-    price,
     thumbnail,
     Category,
     instructions,

@@ -17,7 +17,7 @@ const Reviewmodal = ({ setreviewModal }) => {
         setValue('review','')
         console.log("user in review modal",user);
        
-    },[user, courseEntireData])
+    },[user, courseEntireData,setValue])
 
 
     const addreview=(value)=>{

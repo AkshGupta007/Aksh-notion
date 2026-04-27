@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../../Services/authApi";
@@ -26,7 +25,6 @@ const Loginform = () => {
     dispatch(login(formdata.email.toLowerCase(), formdata.password, navigate));
   };
 
-
   return (
     <form
       onSubmit={onsubmithandler}
@@ -36,23 +34,45 @@ const Loginform = () => {
         Welcome Back 👋
       </h2>
 
+      {/* EMAIL */}
       <input
         name="email"
+        type="email"
         placeholder="Email"
-        className="input-dark"
+        value={formdata.email}
         onChange={onchangehandler}
+        className="input-dark"
+        required
       />
 
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        className="input-dark"
-        onChange={onchangehandler}
-      />
+      {/* PASSWORD */}
+      <div className="relative">
+        <input
+          name="password"
+          type={showpassword ? "text" : "password"}
+          placeholder="Password"
+          value={formdata.password}
+          onChange={onchangehandler}
+          className="input-dark w-full"
+          required
+        />
 
-      <button className="btn-primary">Sign In</button>
+        {/* Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setshowpassword((prev) => !prev)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400"
+        >
+          {showpassword ? "Hide" : "Show"}
+        </button>
+      </div>
 
+      {/* SUBMIT */}
+      <button type="submit" className="btn-primary w-full">
+        Sign In
+      </button>
+
+      {/* LINKS */}
       <p className="text-center text-sm text-gray-400">
         New here?{" "}
         <Link to="/signup" className="text-blue-400">
@@ -60,14 +80,15 @@ const Loginform = () => {
         </Link>
       </p>
 
-
-    <button onClick={()=>navigate("/forgotpassword") }className="text-sm text-gray-400">
-      FORGOT PASSWORD
-    </button>
+      <button
+        type="button"
+        onClick={() => navigate("/forgotpassword")}
+        className="block mx-auto text-sm text-gray-400 hover:text-white"
+      >
+        Forgot Password?
+      </button>
     </form>
-  )};
-
-  
-
+  );
+};
 
 export default Loginform;

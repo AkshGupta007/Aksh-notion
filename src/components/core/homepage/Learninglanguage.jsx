@@ -1,8 +1,5 @@
 import React from 'react'
 import Highlighttext from './Highlighttext'
-import img1 from '../../../assests/7211597-most-popular-naruto-wallpaper-hd-for-desktop-full-hd-1080p-for-pc-desktop-best-naruto-wallpaper-naruto-wallpaper-wallpaper-naruto-shippuden.jpg'
-import img2 from '../../../assests/9672612-akatsuki-naruto-desktop-wallpaper-r.jpg'
-import img3 from '../../../assests/9672621-naruto-desktop-wallpaper-4k.png'
 
 import hp1 from "../../../assests/homepage 1.jpg"
 import hp2 from "../../../assests/homepage 2.jpg"
@@ -32,11 +29,11 @@ const Learninglanguage = () => {
         </div>
 
         <div className="flex flex-row items-center justify-center mt-10">
-          <img src={hp2} className="object-contain w-[30%] h-60"></img>
+          <img src={hp2} className="object-contain w-[30%] h-60" alt='text'></img>
 
-          <img src={hp3} className="object-contain w-[30%] h-60 "></img>
+          <img src={hp3} className="object-contain w-[30%] h-60 " alt='text'></img>
 
-          <img src={img3} className="object-contain w-[30%] h-60 ml-4"></img>
+          <img src={img3} className="object-contain w-[30%] h-60 ml-4"  alt='text'></img>
         </div>
       </div>
     </div>

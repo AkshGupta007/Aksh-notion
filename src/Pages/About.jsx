@@ -48,20 +48,20 @@ const About = () => {
             <img
               src={img1}
               className="w-80 h-60 object-contain"
-              alt="about us image 1"
+              alt="about us 1"
               loading="lazy"
             />
             <img
               src={img2}
               className="w-80 h-60 object-contain"
-              alt="about us image 2"
+              alt="about us 2"
               loading="lazy"
             />
             <img
               src={img3}
               className="w-80 h-60 object-contain"
               loading="lazy"
-              alt="about us image 1"
+              alt="about us 1"
             />
           </div>
         </div>
@@ -107,7 +107,7 @@ const About = () => {
               from all walks of life to unlock their full potential.
             </p>
           </div>
-          <img src={img4} className="w-80 h-96 object-contain" loading="lazy" />
+          <img src={img4} className="w-80 h-96 object-contain" loading="lazy" alt="about us" />
         </div>
 
         <div className="flex items-center justify-evenly mt-8 ml-8">
@@ -115,7 +115,7 @@ const About = () => {
             <h1
               className="bg-gradient-to-l from-yellow-300  to-yellow-900 
         bg-clip-text text-transparent text-3xl font-bold mb-4"
-            >
+            >``
               Our Vision
             </h1>
             <p className="text-white max-w-md ">

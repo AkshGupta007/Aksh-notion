@@ -1,94 +1,83 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import { setStep,resetCourseState } from '../../../../../slices/Courseslice';
-import { useSelector,useDispatch } from 'react-redux';
-import { useEffect,useState } from 'react';
-import { updatecourse } from '../../../../../Services/CourseApi';
-import { useNavigate } from 'react-router';
-
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { setStep, resetCourseState } from "../../../../../slices/Courseslice";
+import { useSelector, useDispatch } from "react-redux";
+import { updatecourse } from "../../../../../Services/CourseApi";
+import { useNavigate } from "react-router-dom";
 
 const Publishcourse = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const dispatch=useDispatch();
-      const navigate = useNavigate();
+  const { course } = useSelector((state) => state.course);
+  const { token } = useSelector((state) => state.auth);
 
-    useEffect(()=>{
-    if(course?.status==="published"){
-            setValue("public",true);
-        }
-    },[])
+  const [loading, setloading] = useState(false);
 
+  const { register, handleSubmit, getValues, setValue } = useForm();
 
-    const {course}=useSelector((state)=>state.course);
-           const { token } = useSelector((state) => state.auth);
+  // ✅ FIXED useEffect
+  useEffect(() => {
+    if (course?.status === "published") {
+      setValue("public", true);
+    }
+  }, [course, setValue]);
 
-           const[loading,setloading]=useState(false);
+  const gotocourses = () => {
+    dispatch(resetCourseState());
+    navigate("/dashboard/my-courses");
+  };
 
-          const {
-            register,
-            handleSubmit,
-            getValues,
-            setValue,
-            formState: { errors },
-          } = useForm();
+  const onsubmit = async () => {
+    const isPublic = getValues("public");
 
-        const gotocourses=()=>{
-            dispatch(resetCourseState());
-            navigate("/dashboard/my-courses")
-        }
+    // ✅ Clean logic
+    if (
+      (course?.status === "published" && isPublic) ||
+      (course?.status === "draft" && !isPublic)
+    ) {
+      gotocourses();
+      return;
+    }
 
- const onsubmit=async(data)=>{
-    if(course?.status==='published'&& getValues("public")===true ||
-  course?.status==='draft'&& getValues("public")===false  ){
-    //no upds\ation in form so no need to make api call
-    gotocourses();
-    return ;
-  }
+    const formData = new FormData();
+    formData.append("courseId", course._id);
+    formData.append("status", isPublic ? "published" : "draft");
 
-  const formData=new FormData();
+    setloading(true);
 
-  formData.append("courseId",course._id);
-  const updatedstatus=getValues("public")?"published":"draft";
-  formData.append("status",updatedstatus);
- 
+    const result = await updatecourse(formData, token);
 
-  setloading(true);
-  const result=await updatecourse(formData,token);
+    if (result) {
+      gotocourses();
+    }
 
-  if(result){
-    gotocourses();
-  }
+    setloading(false);
+  };
 
-  setloading(false);
-
-
-
-
-
- }
-
- const gotoback=()=>{
+  const gotoback = () => {
     dispatch(setStep(2));
- }
+  };
 
   return (
-    <div className=" text-white h-44 flex flex-col  mt-5">
-      <h1 className="bg-blue-950 "> PUBLISH SETTINGS</h1>
+    <div className="text-white h-44 flex flex-col mt-5">
+      <h1 className="bg-blue-950 p-2 font-semibold">PUBLISH SETTINGS</h1>
+
       <form
         onSubmit={handleSubmit(onsubmit)}
-        className=" bg-blue-950 flex flex-col items-center justify-center pt-10 pb-10"
+        className="bg-blue-950 flex flex-col items-center justify-center pt-10 pb-10 gap-4"
       >
-        <label >
+        <label className="flex items-center gap-2">
           <input type="checkbox" {...register("public")} />
           MAKE THIS COURSE PUBLIC
         </label>
 
-        <div className=" flex justify-end gap-2 mt-2">
+        <div className="flex justify-end gap-2 mt-2">
           <button
             disabled={loading}
             type="button"
-            className="rounded-md  text-white px-2 py-2"
-            onClick={() => gotoback()}
+            onClick={gotoback}
+            className="rounded-md px-3 py-2 bg-gray-600"
           >
             BACK
           </button>
@@ -96,14 +85,14 @@ const Publishcourse = () => {
           <button
             disabled={loading}
             type="submit"
-            className="rounded-md bg-yellow-400 text-white px-2 py-2"
+            className="rounded-md bg-yellow-400 px-3 py-2 text-black font-semibold"
           >
-            SAVE CHANGES
+            {loading ? "Saving..." : "SAVE CHANGES"}
           </button>
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default Publishcourse
+export default Publishcourse;

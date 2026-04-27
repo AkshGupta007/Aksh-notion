@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assests/OIP.jpeg'
+
 import { Link, matchPath} from 'react-router';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';

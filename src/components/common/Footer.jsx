@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assests/OIP.jpeg";
+
 import { SocialIcon } from "react-social-icons";
 import thumbnail from "../../assests/png logo.png";
 

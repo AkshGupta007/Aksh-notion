@@ -1,68 +1,103 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const Requirementlist = ({ name, setValue, getValues, label, errors, register }) => {
+const Requirementlist = ({
+  name,
+  setValue,
+  getValues,
+  label,
+  errors,
+  register,
+}) => {
+  const [requirement, setrequirement] = useState("");
+  const [requirementlist, setrequirementlist] = useState([]);
 
-    const [requirement,setrequirement] = useState("");
-    const [requirementlist,setrequirementlist]=useState([]);
+  // ✅ Add requirement
+  const addrequirement = () => {
+    const trimmed = requirement.trim();
 
-    const addrequirement=()=>{
-        if(requirement){
-            setrequirementlist([...requirementlist,requirement]);
-            setrequirement("");
-        }
+    if (!trimmed) return;
+
+    setrequirementlist((prev) => [...prev, trimmed]);
+    setrequirement("");
+  };
+
+  // ✅ Remove
+  const removerequirement = (index) => {
+    setrequirementlist((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // ✅ Sync with react-hook-form
+  useEffect(() => {
+    setValue(name, requirementlist);
+  }, [requirementlist, name, setValue]);
+
+  // ✅ Register field
+  useEffect(() => {
+    register(name, { required: true });
+  }, [name, register]);
+
+  // ✅ Load existing data (edit case)
+  useEffect(() => {
+    const data = getValues(name);
+    if (data && data.length > 0) {
+      setrequirementlist(data);
     }
+  }, [getValues, name]);
 
-    const removerequirement=(index)=>{
-        const updatedlist=[...requirementlist];
-        updatedlist.splice(index,1);
-        setrequirementlist(updatedlist);
-    }
+  return (
+    <div className="text-white">
+      <label htmlFor={name} className="block mb-2 font-medium">
+        {label}
+      </label>
 
-    useEffect(()=>{
-        setValue(name, requirementlist);
-    },[requirementlist])
-
-      useEffect(() => {
-        register(name, { required: true });
-      }, []);
-
-      useEffect(() => {
-        const data = getValues(name);
-        if (data && data.length > 0) {
-          setrequirementlist(data);
-        }
-      }, []);
-
-
-    return (
-      <div className="text-red-700">
-        <label htmlFor={name}>{label}</label>
+      <div className="flex gap-2">
         <input
           type="text"
           id={name}
           value={requirement}
-          placeholder={`Enter instructions`}
-          onChange={(e) => {
-            setrequirement(e.target.value);
-          }}
-        ></input>
-        <button type="button" onClick={addrequirement}>
+          placeholder="Enter requirement"
+          onChange={(e) => setrequirement(e.target.value)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && (e.preventDefault(), addrequirement())
+          }
+          className="flex-1 px-3 py-2 text-black rounded-md"
+        />
+
+        <button
+          type="button"
+          onClick={addrequirement}
+          className="bg-yellow-400 text-black px-3 py-2 rounded-md"
+        >
           Add
         </button>
+      </div>
 
+      {/* ✅ List */}
+      <ul className="mt-3 space-y-2">
         {requirementlist.map((req, index) => (
-          <li key={index} className="text-pink-300 flex gap-5 items-center mt-3">
-            <span className='bg-white text-black rounded-md px-2 py-2'>{req}</span>
-            <button type="button" onClick={() => removerequirement(index)}>
+          <li
+            key={index}
+            className="flex justify-between items-center bg-gray-800 px-3 py-2 rounded-md"
+          >
+            <span>{req}</span>
+
+            <button
+              type="button"
+              onClick={() => removerequirement(index)}
+              className="text-red-400 text-sm"
+            >
               Remove
             </button>
           </li>
         ))}
-      </div>
-    );
-  
-}
+      </ul>
+
+      {/* ✅ Error */}
+      {errors[name] && (
+        <p className="text-red-500 text-sm mt-2">{label} is required</p>
+      )}
+    </div>
+  );
+};
 
 export default Requirementlist;

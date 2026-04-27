@@ -19,7 +19,7 @@ const Mycourses = () => {
     }
     fetching();
 
- },[]);
+ },[token]);
 
   return (
     <div className="text-white flex flex-col">

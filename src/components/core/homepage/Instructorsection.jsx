@@ -1,6 +1,6 @@
 import React from 'react'
-import logo1 from "../../../assests/9672621-naruto-desktop-wallpaper-4k.png"
-import image from "./../../../assests/images.jpeg"
+
+import im from "./../../../assests/images.jpeg"
 import Highlighttext from './Highlighttext';
 import CTBUTTON from './CTBUTTON';
 const Instructorsection = () => {
@@ -8,7 +8,7 @@ const Instructorsection = () => {
     <div className="mt-16">
       <div className="flex flex-row gap-20  justify-between items-center">
         <div className="">
-          <img src={image} alt={"instructor image"} className='w-11/12 h-96' />
+          <img src={im} alt={"instructor image"} className='w-11/12 h-96' />
         </div>
         <div className="flex flex-col w-[50%] gap-10">
           <div className="text-4xl font-semibold w-[50%] ">

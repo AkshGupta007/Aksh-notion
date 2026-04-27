@@ -38,6 +38,8 @@ const Videosidebar = ({ setreviewModal }) => {
     courseEntireData,
     location.pathname,
     completedLectures,
+    sectionId,
+    subSectionId,
   ]);
 
   return (

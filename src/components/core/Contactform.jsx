@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import { IoLogoWechat } from "react-icons/io5";
-import { MdOutlineDoorBack } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
+// import { IoLogoWechat } from "react-icons/io5";
+// import { MdOutlineDoorBack } from "react-icons/md";
+// import { FaPhoneAlt } from "react-icons/fa";
 import ReviewSlider from '../core/homepage/ReviewSlider';
 import { sendcontactusquery } from '../../Services/StudentFeaturesApi';
 

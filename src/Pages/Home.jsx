@@ -9,10 +9,10 @@ import TIMELINESECTION from '../components/core/homepage/TIMELINESECTION';
 import Learninglanguage from '../components/core/homepage/Learninglanguage';
 import Instructorsection from '../components/core/homepage/Instructorsection';
 import ReviewSlider from '../components/core/homepage/ReviewSlider';
-import { FaArrowRight } from "react-icons/fa";
+// import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-import target from '../assests/homepage 1.jpg'
+// import target from '../assests/homepage 1.jpg'
 
 
 

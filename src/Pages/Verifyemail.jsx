@@ -19,7 +19,7 @@ const Verifyemail = () => {
         if(!signup){
             navigate("/signup")
         }
-    },[]);
+    },[signup,navigate]);
 
 
     const Submithandler=(e)=>{
