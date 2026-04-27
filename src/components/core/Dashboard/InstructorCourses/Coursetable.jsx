@@ -1,5 +1,5 @@
 import React from 'react'
-import {  ,useSelector} from 'react-redux'
+import { useSelector} from 'react-redux'
  import  ConfirmationModal  from "../../../common/ConfirmationModal";
 import { useState } from 'react'
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
