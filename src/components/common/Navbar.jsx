@@ -24,8 +24,6 @@ const Navbar = () => {
     //  console.log("User object:", JSON.stringify(user.additionaldetails, null, 2));
 
 
-
-    const{totalitems}=useSelector((state)=>state.cart)
     const[sublinks,setsublinks]=useState([]);
 
 

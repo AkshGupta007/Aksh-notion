@@ -204,9 +204,6 @@ export const logout = (navigate) => {
 };
 {/** profile apissssss */}
 export const Updateprofile = ({ dob, about, contact, gender }) => {
- 
-
- 
   return async (dispatch) => {
     try {
        const token = localStorage.getItem("token");
@@ -276,14 +273,16 @@ export const Deleteprofileaccount=(navigate)=>{
           
         },)
 
-         dispatch(setToken(null));
-         dispatch(setUser(null));
-         dispatch(resetcart());
-         localStorage.removeItem("user");
-         localStorage.removeItem("token");
-         navigate("/");
+     if(response.data.success){
+          dispatch(setToken(null));
+          dispatch(setUser(null));
+          dispatch(resetcart());
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          navigate("/");
 
-        toast.success("delete successfull")
+          toast.success("delete successfull");
+     }
     }
   catch(error){
       console.log("error",error);

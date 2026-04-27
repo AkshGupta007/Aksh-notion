@@ -65,8 +65,6 @@ const Verifyemail = () => {
 
   return (
     <div className="h-screen bg-zinc-800">
-
-
       {loading ? (
         <div></div>
       ) : (

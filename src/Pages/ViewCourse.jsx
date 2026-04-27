@@ -9,7 +9,7 @@ import {
   setEntireCourseData,
   setCompletedLectures,
   setTotalNoOfLectures,
-  updateCompletedLectures
+  // updateCompletedLectures
 } from "../slices/Viewcourse";
 import { fetchcoursedetails } from '../Services/CourseApi';
 import {getCourseProgress} from "../Services/CourseApi"
@@ -57,7 +57,7 @@ const ViewCourse = () => {
       }
     };
     fetch();
-  }, [courseId, token]);
+  }, [courseId, token, dispatch]);
 
   return (
     <div className="flex h-screen">

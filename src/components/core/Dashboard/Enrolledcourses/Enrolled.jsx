@@ -50,7 +50,7 @@ const Enrolled = () => {
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [token, fetchData]);
 
   return (
     <div className="text-white w-full">

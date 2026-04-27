@@ -25,7 +25,7 @@ const CoursePage = () => {
       if (res) setcoursedata(res.details);
     };
     fetch();
-  }, []);
+  }, [token, courseId]);
 
   const handlebuy = () => {
     if (token) buyCourse([courseId], token, user, navigate, dispatch);

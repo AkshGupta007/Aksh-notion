@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch ,useSelector} from 'react-redux'
+import {  ,useSelector} from 'react-redux'
  import  ConfirmationModal  from "../../../common/ConfirmationModal";
 import { useState } from 'react'
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
@@ -10,7 +10,7 @@ import { fetchinstructorcourses,deleteinstructorcourse } from '../../../../Servi
 import { useNavigate } from 'react-router';
 
 const Coursetable = ({courses,setcourses}) => {
-  const dispatch=useDispatch();
+
   const navigate=useNavigate();
 
  const {token}=useSelector((state)=>state.auth);

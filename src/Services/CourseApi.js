@@ -68,9 +68,9 @@ export const updatecourse = async (formData, token) => {
 };
 
 export const addcourse = async (formData, token) => {
-  for (let [key, value] of formData.entries()) {
-    //   console.log("we are in addd course",key, value);
-  }
+  // for (let [key, value] of formData.entries()) {
+  //   //   console.log("we are in addd course",key, value);
+  // }
   try {
     const response = await apiconnector("POST", CREATE_COURSE_API, formData, {
       Authorization: `Bearer ${token}`, // ✅ attach token properly
