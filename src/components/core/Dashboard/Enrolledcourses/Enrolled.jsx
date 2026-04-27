@@ -50,7 +50,7 @@ const Enrolled = () => {
     if (token) {
       fetchData();
     }
-  }, [token, fetchData]);
+  }, [token]);
 
   return (
     <div className="text-white w-full">
@@ -70,11 +70,21 @@ const Enrolled = () => {
             <div
               key={course?._id}
               className="grid grid-cols-3 items-center p-4 border-b border-gray-700 cursor-pointer"
-              onClick={() =>
+              onClick={() => {
+                const section = course?.coursecontent?.[0];
+                const subsection = section?.subsections?.[0];
+
+                if (!section || !subsection) return;
+
                 navigate(
-                  `/view-course/courseId/${course?._id}/sectionId/${course?.coursecontent?.[0]?._id}/subSectionId/${course?.coursecontent?.[0]?.subsections?.[0]?._id}`,
-                )
-              }
+                  `/view-course/courseId/${course._id}/sectionId/${section._id}/subSectionId/${subsection._id}`,
+                );
+              }}
+              // onClick={() =>
+              //   navigate(
+              //     `/view-course/courseId/${course?._id}/sectionId/${course?.coursecontent?.[0]?._id}/subSectionId/${course?.coursecontent?.[0]?.subsections?.[0]?._id}`,
+              //   )
+              // }
             >
               {/* LEFT: Course Info */}
               <div className="flex gap-3 items-center">

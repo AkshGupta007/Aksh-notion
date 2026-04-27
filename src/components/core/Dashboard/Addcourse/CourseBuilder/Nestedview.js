@@ -21,7 +21,7 @@ const Nestedview = ({ handleChangeEditSectionName }) => {
   const [viewSubSection, setViewSubSection] = useState(null);
   const [editSubSection, setEditSubSection] = useState(null);
   const [confirmationModal, setConfirmationModal] = useState(null);
-  const [loading, setloading] = useState(false);
+ const [loading, setloading] = useState(false);
 
   // ✅ Delete Section
   const handleDeleteSection = async (sectionId) => {

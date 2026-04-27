@@ -32,7 +32,6 @@ const Allcourseinfromation = () => {
     getValues,
     reset,
     setValue,
-    formState: { errors },
   } = useForm();
 
   // 📌 Fetch categories + populate form in edit mode

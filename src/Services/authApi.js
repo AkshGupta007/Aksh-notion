@@ -202,7 +202,7 @@ export const logout = (navigate) => {
     navigate("/");
   };
 };
-{/** profile apissssss */}
+
 export const Updateprofile = ({ dob, about, contact, gender }) => {
   return async (dispatch) => {
     try {
