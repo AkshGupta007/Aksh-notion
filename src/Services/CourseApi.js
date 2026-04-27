@@ -185,6 +185,7 @@ export const createRatingAndReview=async({ courseid, rating, review }, token)=>{
 
     if(result?.data?.success){
         toast.success("review created successfully");
+       toast.dismiss(toastId);
         return result.data.data;
     }
   } catch (error) {
@@ -192,7 +193,7 @@ export const createRatingAndReview=async({ courseid, rating, review }, token)=>{
     console.error("Controller response:", error.response?.data);
 
     toast.error(error.response?.data?.message || error.message);}
-  toast.dismiss(toastId);
+ 
 }
 
 
