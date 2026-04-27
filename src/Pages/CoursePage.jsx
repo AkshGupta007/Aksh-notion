@@ -94,8 +94,8 @@ const CoursePage = () => {
 
           {/* Rating Row */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="text-yellow-400 font-bold text-lg">Ratings</span>
-            <RatingStars reviewCount={ratingandreview?.length || 0} />
+            <span className="text-yellow-400 font-bold text-lg">{rating}</span>
+            <RatingStars reviewCount={rating} />
             <span className="text-white/40 text-sm">
               ({ratingandreview?.length || 0} ratings)
             </span>

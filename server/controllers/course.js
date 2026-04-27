@@ -202,7 +202,7 @@ exports.getcoursedetails=async(req,res)=>{
             populate:{
                 path:"subsections"
             }
-        }).exec();
+        }).populate("ratingandreview").exec();
         if(!details){
             return res.status(404).json({
                 success:false,
