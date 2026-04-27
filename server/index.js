@@ -1,7 +1,19 @@
 const express = require('express');
 const app=express();
 
-const database=require('./connections/database');
+
+
+const dotenv = require("dotenv");
+dotenv.config();
+
+
+const database = require("./connections/database");
+database.connect();
+
+const { cloudinaryconfig } = require("./connections/cloudinary");
+cloudinaryconfig();
+
+
 
 const userRoutes=require('./routes/user');
 const courseRoutes=require('./routes/course');
@@ -14,22 +26,17 @@ const paymentRoutes=require('./routes/payment');
 const cookieparser=require('cookie-parser');
 const cors=require('cors');
 
-const {cloudinaryconfig}=require('./connections/cloudinary');
 
 const fileupload=require('express-fileupload');
 
-const dotenv=require('dotenv');
 
-dotenv.config();
-
-database.connect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -45,7 +52,7 @@ app.use('/api/course',courseRoutes);
 app.use('/api/profile',profileRoutes);
 app.use('/api/payment',paymentRoutes);
 
-cloudinaryconfig();
+
 
 app.get('/',(req,res)=>{
     res.send("welcome to study notion");
