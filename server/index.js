@@ -37,6 +37,7 @@ app.use(cookieparser());
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:3000",
+
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -59,4 +60,8 @@ app.get('/',(req,res)=>{
 });
 app.listen(process.env.PORT || 4000,()=>{
     console.log("server is running on port " + (process.env.PORT || 4000));
+        console.log(
+          "origin is",
+          process.env.FRONTEND_URL || "http://localhost:3000",
+        );
 })

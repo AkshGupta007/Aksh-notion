@@ -119,7 +119,15 @@ const Index = () => {
             </div>
 
             <button
-              onClick={() => buyCourse([cart], token, user, navigate, dispatch)}
+              onClick={() =>
+                buyCourse(
+                  cart.map((c) => c._id),
+                  token,
+                  user,
+                  navigate,
+                  dispatch,
+                )
+              }
               className="w-full py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-black bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 hover:shadow-lg hover:shadow-yellow-500/25 active:scale-[0.98]"
             >
               Buy Now
@@ -140,9 +148,7 @@ const Index = () => {
             <p className="text-2xl font-semibold text-white mb-2">
               Your wishlist is empty
             </p>
-            <p className="text-sm text-white/35">
-             GO TO HOMEPAGE
-            </p>
+            <p className="text-sm text-white/35">GO TO HOMEPAGE</p>
           </div>
           <button
             onClick={() => navigate("/")}

@@ -42,7 +42,7 @@ export async function buyCourse(
     const orderResponse = await apiconnector(
       "POST",
       ORDER_RESPONSE_API,
-      { courses },
+    { courses },
       { Authorization: `Bearer ${token}` },
     );
 
