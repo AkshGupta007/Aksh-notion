@@ -35,7 +35,7 @@ const Editcourse = () => {
     if (courseId && token) {
       fetchData();
     }
-  }, [courseId]);
+  }, [courseId,token, dispatch]);
 
   if (loading) {
     return (

@@ -211,7 +211,7 @@ export const Updateprofile = ({ dob, about, contact, gender }) => {
       //  console.log("Sending Data:", { dob, about, contact, gender });
       toast.success("wait");
 
-      const response = await apiconnector(
+       await apiconnector(
         "PUT",
         UPDATEPROFILE_API,
         {
@@ -241,7 +241,7 @@ export const Changepassword=(email,currentPassword,newPassword)=>{
 
     try{
        const token = localStorage.getItem("token");
-      const response = await apiconnector("POST", CHANGEPASSWORD_API,{
+      await apiconnector("POST", CHANGEPASSWORD_API,{
         email,
         password:currentPassword,
         newpassword:newPassword,

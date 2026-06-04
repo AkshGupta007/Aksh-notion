@@ -64,7 +64,7 @@ const Allcourseinfromation = () => {
     };
 
     init();
-  }, [editCourse, course?._id]); // ✅ only primitives here
+  }, [editCourse, course , reset]); // ✅ only primitives here
 
   const isFormUpdated = () => {
     if (!course) return false;
