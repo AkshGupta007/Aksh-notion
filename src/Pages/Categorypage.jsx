@@ -15,14 +15,14 @@ const Categorypage = () => {
        const fetxh=async()=>{
          const res=await fetchCategories();
              const decodedName = decodeURIComponent(categoryName);
-             console.log("decoded",decodedName);
+             // console.log("decoded",decodedName);
 
              const categorydetail= res.find(
                (ct) => ct.name === decodedName,
              );
              setcategorydetails(categorydetail);
 
-              console.log("category",categorydetail);
+              // console.log("category",categorydetail);
 
         setcategoryid(categorydetail?._id);
        };
@@ -37,14 +37,14 @@ const Categorypage = () => {
       if (!categoryid) return; // ✅ prevents first null call causing 404
       const fetxh = async () => {
         try {
-          console.log("categoryidddddd", categoryid);
+          // console.log("categoryidddddd", categoryid);
           const response = await fetchPageCategories(categoryid);
 
           setcategorypagedetails(response);
 
-          console.log("categorypagedetails", response);
+          // console.log("categorypagedetails", response);
         } catch (error) {
-          console.error();
+          // console.error();
         }
       };
 
@@ -52,7 +52,7 @@ const Categorypage = () => {
     },[categoryid])
 
   return (
-    <div className="h-full text-white bg-black px-6 py-8">
+    <div className="h-full bg-black px-4 py-8 text-white sm:px-6">
       <div className="mb-10">
         <div className="flex items-center gap-2 text-sm text-gray-400">
           <p>Home</p>
@@ -76,14 +76,14 @@ const Categorypage = () => {
           COURSES TO GET YOU STARTED
         </h2>
 
-        <div className="flex gap-6 text-sm mb-6">
+        <div className="mb-6 flex gap-6 overflow-x-auto text-sm">
           <button className="text-yellow-400 border-b-2 border-yellow-400 pb-1">
             Most Popular
           </button>
           <button className="text-gray-400 hover:text-white">New</button>
         </div>
 
-        <div className="px-96">
+        <div className="mx-auto max-w-6xl">
           <CourseSwipper
             course={categoryPagedetails?.selectedcategory?.courses}
           />

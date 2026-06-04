@@ -42,19 +42,19 @@ const RegisterForm = () => {
   };;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-blue-100 relative overflow-hidden px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-100 via-white to-blue-100 px-4 py-8">
       {/* Glow Background */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-300/30 blur-3xl rounded-full top-[-100px] left-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-blue-300/30 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
+      <div className="absolute left-[-160px] top-[-160px] h-[320px] w-[320px] rounded-full bg-purple-300/30 blur-3xl sm:h-[500px] sm:w-[500px]" />
+      <div className="absolute bottom-[-160px] right-[-160px] h-[280px] w-[280px] rounded-full bg-blue-300/30 blur-3xl sm:h-[400px] sm:w-[400px]" />
 
       {/* Card */}
       <form
         onSubmit={onSubmitHandler}
-        className="relative z-10 w-full max-w-lg backdrop-blur-xl bg-white/60 border border-white/30 shadow-2xl rounded-3xl p-8 space-y-6"
+        className="relative z-10 w-full max-w-lg space-y-5 rounded-2xl border border-white/30 bg-white/60 p-5 shadow-2xl backdrop-blur-xl sm:space-y-6 sm:rounded-3xl sm:p-8"
       >
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl font-bold text-gray-800 sm:text-3xl">
             Create Account ✨
           </h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -83,7 +83,7 @@ const RegisterForm = () => {
         </div>
 
         {/* Name Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             required
             type="text"
@@ -132,7 +132,7 @@ const RegisterForm = () => {
         </div>
 
         {/* Passwords */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="relative">
             <input
               required

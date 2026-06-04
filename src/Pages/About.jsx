@@ -30,36 +30,36 @@ const About = () => {
     <div className="min-h-screen ">
       {/* section 1 */}
 
-      <section className="text-white  mt-0  relative h-96 bg-cyan-900">
-        <div className="w-11/12 flex flex-col  gap-8 justify-center items-center mx-auto">
-          <h1 className="text-bold text-3xl mt-16 text-red-400 ">
+      <section className="relative mt-0 bg-cyan-900 py-12 text-white md:h-96">
+        <div className="mx-auto flex w-11/12 flex-col items-center justify-center gap-6">
+          <h1 className="text-bold mt-4 text-center text-3xl text-red-400 md:mt-16">
             Driving Innovation in Online Education for
             <span className="block text-center"> a Brighter Future</span>
           </h1>
 
-          <p className=" text-center w-7/12 h-3 pb-3">
+          <p className="max-w-3xl text-center text-sm leading-relaxed text-white/80 sm:text-base">
             Studynotion is at the forefront of driving innovation in online
             education. We're passionate about creating a brighter future by
             offering cutting-edge courses, leveraging emerging technologies, and
             nurturing a vibrant learning community.
           </p>
 
-          <div className="flex gap-20 h-64 absolute translate-x-6 translate-y-72">
+          <div className="mt-6 grid w-full grid-cols-1 gap-4 sm:grid-cols-3 md:absolute md:h-64 md:translate-x-6 md:translate-y-72 md:gap-8 lg:gap-20">
             <img
               src={img1}
-              className="w-80 h-60 object-contain"
+              className="h-52 w-full rounded-lg object-cover md:h-60 md:object-contain"
               alt="about us 1"
               loading="lazy"
             />
             <img
               src={img2}
-              className="w-80 h-60 object-contain"
+              className="h-52 w-full rounded-lg object-cover md:h-60 md:object-contain"
               alt="about us 2"
               loading="lazy"
             />
             <img
               src={img3}
-              className="w-80 h-60 object-contain"
+              className="h-52 w-full rounded-lg object-cover md:h-60 md:object-contain"
               loading="lazy"
               alt="about us 1"
             />
@@ -69,8 +69,8 @@ const About = () => {
 
       {/*section 2 */}
 
-      <section className="mt-28">
-        <p className="text-white text-4xl w-8/12 mx-auto pt-10">
+      <section className="mt-10 md:mt-28">
+        <p className="mx-auto w-11/12 pt-10 text-2xl leading-tight text-white sm:text-3xl md:w-8/12 md:text-4xl">
           We are passionate about revolutionizing the way we learn. Our
           innovative platform{" "}
           <span className="text-blue-600">combines technology</span>,{" "}
@@ -83,7 +83,7 @@ const About = () => {
       </section>
 
       <section className=" mt-20">
-        <div className="flex items-center justify-evenly mt-2">
+        <div className="mx-auto mt-2 flex w-11/12 flex-col items-center justify-evenly gap-8 lg:flex-row">
           <div className="flex flex-col max-w-lg">
             <h1
               className="bg-gradient-to-l from-red-700 via-red-800 to-red-950 
@@ -107,10 +107,10 @@ const About = () => {
               from all walks of life to unlock their full potential.
             </p>
           </div>
-          <img src={img4} className="w-80 h-96 object-contain" loading="lazy" alt="about us" />
+          <img src={img4} className="h-80 w-full max-w-sm rounded-lg object-cover sm:h-96 sm:object-contain" loading="lazy" alt="about us" />
         </div>
 
-        <div className="flex items-center justify-evenly mt-8 ml-8">
+        <div className="mx-auto mt-8 flex w-11/12 flex-col items-start justify-evenly gap-8 lg:flex-row">
           <div className="gap-10">
             <h1
               className="bg-gradient-to-l from-yellow-300  to-yellow-900 
@@ -150,8 +150,8 @@ const About = () => {
 
       {/**section4 */}
 
-      <section className="bg-gray-800 h-32 mt-12">
-        <div className="flex items-center justify-evenly text-white pt-7">
+      <section className="mt-12 bg-gray-800 py-7">
+        <div className="mx-auto grid w-11/12 grid-cols-2 gap-6 text-center text-white sm:grid-cols-4">
           {datastrip.map((item, index) => {
             return (
               <div key={index} className="">

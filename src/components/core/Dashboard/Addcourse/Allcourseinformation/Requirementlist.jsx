@@ -11,35 +11,33 @@ const Requirementlist = ({
   const [requirement, setrequirement] = useState("");
   const [requirementlist, setrequirementlist] = useState([]);
 
-  // ✅ Add requirement
+  // Add requirement
   const addrequirement = () => {
     const trimmed = requirement.trim();
-
     if (!trimmed) return;
-
     setrequirementlist((prev) => [...prev, trimmed]);
     setrequirement("");
   };
 
-  // ✅ Remove
+  // Remove requirement
   const removerequirement = (index) => {
     setrequirementlist((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // ✅ Sync with react-hook-form
+  // Sync with react-hook-form
   useEffect(() => {
     setValue(name, requirementlist);
   }, [requirementlist, name, setValue]);
 
-  // ✅ Register field
+  // Register field
   useEffect(() => {
     register(name, { required: true });
   }, [name, register]);
 
-  // ✅ Load existing data (edit case)
+  // ✅ Load existing data (edit case) — safe array check prevents crash
   useEffect(() => {
     const data = getValues(name);
-    if (data && data.length > 0) {
+    if (data && Array.isArray(data) && data.length > 0) {
       setrequirementlist(data);
     }
   }, [getValues, name]);
@@ -66,13 +64,13 @@ const Requirementlist = ({
         <button
           type="button"
           onClick={addrequirement}
-          className="bg-yellow-400 text-black px-3 py-2 rounded-md"
+          className="bg-yellow-400 text-black px-3 py-2 rounded-md hover:bg-yellow-300 transition"
         >
           Add
         </button>
       </div>
 
-      {/* ✅ List */}
+      {/* List */}
       <ul className="mt-3 space-y-2">
         {requirementlist.map((req, index) => (
           <li
@@ -80,11 +78,10 @@ const Requirementlist = ({
             className="flex justify-between items-center bg-gray-800 px-3 py-2 rounded-md"
           >
             <span>{req}</span>
-
             <button
               type="button"
               onClick={() => removerequirement(index)}
-              className="text-red-400 text-sm"
+              className="text-red-400 text-sm hover:text-red-300"
             >
               Remove
             </button>
@@ -92,8 +89,8 @@ const Requirementlist = ({
         ))}
       </ul>
 
-      {/* ✅ Error */}
-      {errors[name] && (
+      {/* Error */}
+      {errors?.[name] && (
         <p className="text-red-500 text-sm mt-2">{label} is required</p>
       )}
     </div>

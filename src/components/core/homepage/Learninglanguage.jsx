@@ -6,13 +6,13 @@ import hp2 from "../../../assests/homepage 2.jpg"
 import hp3 from "../../../assests/homepage 3.jpg"
 const Learninglanguage = () => {
   return (
-    <div className="mt-32 mb-2">
+    <div className="mb-2 mt-20 sm:mt-32">
       <div className="flex flex-col gap-5">
-        <div className="text-4xl text-center font-semibold underline decoration-yellow-400 underline-offset-8">
+        <div className="text-center text-3xl font-semibold underline decoration-yellow-400 underline-offset-8 sm:text-4xl">
           <Highlighttext text={"KNOWLEDGE IS KEY TO SUCCESS"} />
         </div>
 
-        <div className="text-center mx-auto text-zinc-700 text-base mt-3 font-medium w-[60%]">
+        <div className="mx-auto mt-3 w-full max-w-3xl text-center text-base font-medium text-zinc-700">
           <p className="text-base  font-medium text-black leading-relaxed">
             Knowledge is the foundation of growth and the key to unlocking new
             opportunities. At StudyNotion, we believe learning should be
@@ -28,12 +28,12 @@ const Learninglanguage = () => {
           </p>
         </div>
 
-        <div className="flex flex-row items-center justify-center mt-10">
-          <img src={hp2} className="object-contain w-[30%] h-60" alt='text'></img>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <img src={hp2} className="h-56 w-full rounded-lg object-cover sm:h-60" alt='text'></img>
 
-          <img src={hp3} className="object-contain w-[30%] h-60 " alt='text'></img>
+          <img src={hp3} className="h-56 w-full rounded-lg object-cover sm:h-60" alt='text'></img>
 
-          <img src={hp1} className="object-contain w-[30%] h-60 ml-4"  alt='text'></img>
+          <img src={hp1} className="h-56 w-full rounded-lg object-cover sm:h-60"  alt='text'></img>
         </div>
       </div>
     </div>

@@ -32,7 +32,7 @@ const App = () => {
  
   const { user } = useSelector((state) => state.profile);
   return (
-    <div className=" bg-zinc-950 w-full h-full">
+    <div className="min-h-screen w-full overflow-x-hidden bg-zinc-950">
       <Navbar />
       {/* <div>
         {console.log("User ka data:", user)}

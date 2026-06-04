@@ -14,7 +14,7 @@ const Mycourses = () => {
         const result = await fetchinstructorcourses(token);
         if(result){
             setcourses(result);
-            console.log("fetched courses",result);
+            // console.log("fetched courses",result);
         }
     }
     fetching();
@@ -23,8 +23,8 @@ const Mycourses = () => {
 
   return (
     <div className="text-white flex flex-col">
-      <div className="flex justify-between">
-        <h1 className="text-4xl">MY COURSES</h1>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-3xl sm:text-4xl">MY COURSES</h1>
 
         <button
           onClick={() => navigate("/dashboard/add-course")}

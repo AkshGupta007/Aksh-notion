@@ -62,9 +62,9 @@ const ContactUs = () => {
         setErrors({});
       };
   return (
-    <div className='flex flex-col min-h-screen mb-3'>
-      <div className="h-screen mb-32 flex items-center justify-around ">
-        <div className="text-white bg-zinc-800 flex flex-col gap-6 p-10 rounded-lg shadow-lg">
+    <div className='mb-3 flex min-h-screen flex-col'>
+      <div className="mx-auto mb-16 flex w-11/12 flex-col items-stretch justify-around gap-8 py-8 lg:flex-row lg:items-center">
+        <div className="flex flex-col gap-6 rounded-lg bg-zinc-800 p-6 text-white shadow-lg sm:p-10 lg:max-w-sm">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <IoLogoWechat className="text-4xl text-green-400" />
@@ -91,10 +91,10 @@ const ContactUs = () => {
           </div>
         </div>
 
-        <div className="min-h-screen flex items-center justify-center bg-[#020617] p-6">
-          <div className="w-full max-w-3xl border border-gray-700 rounded-xl p-8 bg-[#020617] shadow-xl">
+        <div className="flex items-center justify-center bg-[#020617] lg:p-6">
+          <div className="w-full max-w-3xl rounded-xl border border-gray-700 bg-[#020617] p-5 shadow-xl sm:p-8">
             {/* Heading */}
-            <h2 className="text-3xl font-bold text-white mb-2">
+            <h2 className="mb-2 text-2xl font-bold text-white sm:text-3xl">
               Got a Idea? We’ve got the skills. Let’s team up
             </h2>
             <p className="text-gray-400 mb-8">
@@ -103,8 +103,8 @@ const ContactUs = () => {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* First + Last Name */}
-              <div className="flex gap-4">
-                <div className="w-1/2">
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <div className="w-full sm:w-1/2">
                   <label className="text-sm text-gray-400">First Name</label>
                   <input
                     type="text"
@@ -119,7 +119,7 @@ const ContactUs = () => {
                   )}
                 </div>
 
-                <div className="w-1/2">
+                <div className="w-full sm:w-1/2">
                   <label className="text-sm text-gray-400">Last Name</label>
                   <input
                     type="text"
@@ -154,8 +154,8 @@ const ContactUs = () => {
               {/* Phone */}
               <div>
                 <label className="text-sm text-gray-400">Phone Number</label>
-                <div className="flex gap-3 mt-1">
-                  <select className="p-3 rounded-md bg-[#0f172a] text-white border border-gray-700">
+                <div className="mt-1 flex gap-3">
+                  <select className="w-24 rounded-md border border-gray-700 bg-[#0f172a] p-3 text-white">
                     <option>+91</option>
                     <option>+1</option>
                     <option>+44</option>

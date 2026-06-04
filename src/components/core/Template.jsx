@@ -8,22 +8,22 @@ const Template = ({ heading, description1, description2, image, formtype }) => {
   const { loading } = useSelector((state) => state.auth);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-900 via-black to-zinc-800 px-4 relative overflow-hidden">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-900 via-black to-zinc-800 px-4 py-8">
       {/* Background Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
+      <div className="absolute left-[-160px] top-[-160px] h-[320px] w-[320px] rounded-full bg-blue-500/20 blur-3xl sm:h-[500px] sm:w-[500px]" />
+      <div className="absolute bottom-[-160px] right-[-160px] h-[280px] w-[280px] rounded-full bg-purple-500/20 blur-3xl sm:h-[400px] sm:w-[400px]" />
 
       {loading ? (
         <div className="text-xl font-semibold animate-pulse text-white z-10">
           Loading...
         </div>
       ) : (
-        <div className="relative z-10 w-full max-w-6xl grid md:grid-cols-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative z-10 grid w-full max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl md:grid-cols-2 md:rounded-3xl">
           {/* LEFT SECTION */}
-          <div className="flex flex-col justify-center px-6 py-10 md:px-10 md:py-12">
+          <div className="flex flex-col justify-center px-4 py-8 sm:px-6 md:px-10 md:py-12">
             <div className="max-w-md w-full mx-auto">
               {/* Heading */}
-              <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              <h1 className="text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl">
                 {heading}
               </h1>
 

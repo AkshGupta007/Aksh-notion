@@ -18,8 +18,8 @@ const InstructorDashboard = () => {
             setLoading(true);
             const data= await getInstructorDashboard(token);
             const data2= await fetchinstructorcourses(token);
-            console.log("Instructor Dashboard Data:", data);
-            console.log("Instructor Courses Data:", data2);
+            // console.log("Instructor Dashboard Data:", data);
+            // console.log("Instructor Courses Data:", data2);
             if(data){
                 setInstructorData(data);
             }
@@ -55,10 +55,10 @@ const InstructorDashboard = () => {
       {loading ? (
         <div className="spinner"></div>
       ) : instructorCourses.length > 0 ? (
-        <div className="flex  md:flex-row gap-10 mt-10">
+        <div className="mt-10 flex flex-col gap-10 md:flex-row">
           <InstructorChart courses={instructorData} />
           <div className="bg-slate-600 p-6 rounded-lg shadow-md w-full md:w-1/3 h-fit">
-            <p className="text-4xl text-yellow-300 underline-offset-0">
+            <p className="text-3xl text-yellow-300 underline-offset-0 sm:text-4xl">
               Statistics
             </p>
             <div className="mt-6 space-y-4 text-lg">
@@ -89,7 +89,7 @@ const InstructorDashboard = () => {
       )}
 
       <div>
-        <div className="flex items-center justify-between mt-10 mb-5 mr-7">
+        <div className="mb-5 mr-0 mt-10 flex items-center justify-between sm:mr-7">
           <h2 className="text-2xl font-bold mt-10 mb-5">Your Courses</h2>
 
           <button>
@@ -105,7 +105,7 @@ const InstructorDashboard = () => {
           {instructorCourses.slice(0, 3).map((course) => (
             <div
               key={course._id}
-              className="bg-gray-800 text-white rounded-xl p-4 w-[250px] shadow-md hover:shadow-lg transition-all duration-300"
+              className="w-full rounded-xl bg-gray-800 p-4 text-white shadow-md transition-all duration-300 hover:shadow-lg sm:w-[250px]"
             >
               <img
                 src={course.thumbnail}

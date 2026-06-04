@@ -43,7 +43,7 @@ const Videosidebar = ({ setreviewModal }) => {
   ]);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-900 text-white w-[300px] border-r border-gray-700">
+    <div className="flex max-h-[45vh] w-full flex-col border-b border-gray-700 bg-gray-900 text-white md:h-screen md:max-h-none md:w-[300px] md:border-b-0 md:border-r">
       {/* Course Title + Progress */}
       <div className="p-4 border-b border-gray-700">
         <p className="text-sm font-semibold text-white line-clamp-2 mb-2">

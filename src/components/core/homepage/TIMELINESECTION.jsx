@@ -12,13 +12,13 @@ const TIMELINESECTION = () => {
 
   return (
     <div className="w-full mt-16">
-      <div className="flex flex-col lg:flex-row items-center ">
+      <div className="flex flex-col items-center gap-10 lg:flex-row">
         {/* LEFT SECTION */}
-        <div className="lg:w-1/2 flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8 lg:w-1/2">
           {data.map((item, index) => (
-            <div key={index} className="flex items-start gap-5">
+          <div key={index} className="flex items-start gap-4 sm:gap-5">
               {/* Icon */}
-              <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
+              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-gray-300">
                 <img
                   src={item.logo}
                   alt={item.title}
@@ -38,24 +38,24 @@ const TIMELINESECTION = () => {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="lg:w-1/2 relative">
+        <div className="relative w-full lg:w-1/2">
           {/* Image */}
           <img
             src={target}
             alt="timeline"
-            className="w-full rounded-xl shadow-lg object-center h-80"
+            className="h-64 w-full rounded-xl object-cover object-center shadow-lg sm:h-80"
           />
 
           {/* Stats Card */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#022c22] text-white rounded-lg px-6 py-4 flex gap-6 shadow-xl">
+          <div className="absolute bottom-4 left-1/2 flex w-[92%] -translate-x-1/2 gap-3 rounded-lg bg-[#022c22] px-4 py-3 text-white shadow-xl sm:bottom-6 sm:w-auto sm:gap-6 sm:px-6 sm:py-4">
             {/* Experience */}
-            <div className="flex items-center gap-2 border-r border-green-700 pr-4">
+            <div className="flex flex-1 items-center gap-2 border-r border-green-700 pr-3 sm:flex-none sm:pr-4">
               <p className="text-2xl font-bold">10+</p>
               <p className="text-green-300 text-xs">Years of Experience</p>
             </div>
 
             {/* Courses */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-1 items-center gap-2 sm:flex-none">
               <p className="text-2xl font-bold">250+</p>
               <p className="text-green-300 text-xs">Courses Available</p>
             </div>

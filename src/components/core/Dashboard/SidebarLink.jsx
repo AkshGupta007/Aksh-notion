@@ -14,7 +14,7 @@ const SidebarLink = ({ link, icon }) => {
       end={false}
       className={({ isActive }) =>
         clsx(
-          "relative flex items-center gap-x-2 px-6 py-2 text-sm font-medium rounded-md transition-colors duration-200 w-full",
+          "relative flex w-max items-center gap-x-2 whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors duration-200 md:w-full md:px-6",
           isActive
             ? "bg-yellow-700 text-black"
             : "text-gray-300 hover:bg-zinc-700 hover:text-white",

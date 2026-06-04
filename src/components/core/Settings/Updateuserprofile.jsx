@@ -5,6 +5,10 @@ import { Updateprofile } from "../../../Services/authApi";
 import { setUser } from "../../../slices/ProfileSlice";
 
 const Updateuserprofile = () => {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.profile);
+
   const {
     register,
     handleSubmit,
@@ -12,194 +16,176 @@ const Updateuserprofile = () => {
     formState: { errors },
   } = useForm();
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      reset({
+        dob: user?.additionaldetails?.dob || "",
+        phoneno: user?.additionaldetails?.contact?.replace("+91", "") || "",
+        countrycode: "+91",
+        gender: user?.additionaldetails?.gender || "",
+        about: user?.additionaldetails?.about || "",
+      });
+    }
+  }, [user, reset]);
 
-  const{user}=useSelector((state)=>state.profile)
-
-  // Submit handler
   const onSubmit = (data) => {
     const { gender, dob, countrycode, phoneno, about } = data;
-    const contact = countrycode + phoneno;
 
-    // alert(`Profile Updated!\n${JSON.stringify(data, null, 2)}`);
-  const updatedUser = {
-    ...user,
-    additionaldetails: {
-      ...user.additionaldetails, // keep existing values
-      gender,
-      dob,
-      contact,
-      about,
-    },
+    const contact = `${countrycode}${phoneno}`;
+
+    const updatedUser = {
+      ...user,
+      additionaldetails: {
+        ...user?.additionaldetails,
+        gender,
+        dob,
+        contact,
+        about,
+      },
+    };
+
+    dispatch(setUser(updatedUser));
+
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    dispatch(
+      Updateprofile({
+        dob,
+        about,
+        contact,
+        gender,
+      }),
+    );
   };
-
-      dispatch(setUser(updatedUser));
-localStorage.setItem("user", JSON.stringify(updatedUser));
-
-
-    console.log(user);
-
-    dispatch(Updateprofile({dob, about, contact, gender}));
-  };
-
-  useEffect(() => {
-    console.log("User after update:", user);
-  }, [user]);
-
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-[#0f172a] border border-gray-700 rounded-xl p-6 mt-8 shadow-md  text-yellow-50 font-semibold"
+      className="mt-8 rounded-xl border border-gray-700 bg-[#0f172a] p-4 md:p-6 shadow-md"
     >
-      <h1 className="text-xl font-bold">PROFILE INFORMATION</h1>
+      <h2 className="mb-6 text-xl font-semibold text-white">
+        Profile Information
+      </h2>
 
-      <div className="flex  mt-5 gap-11 ">
-        <div className="flex flex-col gap-y-11 ">
-          {/* Display Name */}
-          <div className="flex flex-col w-fit gap-1">
-            <label htmlFor="display">Display Name</label>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {/* DOB */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-300">
+            Date of Birth
+          </label>
+
+          <input
+            type="date"
+            {...register("dob", {
+              required: "Date of birth is required",
+            })}
+            className="w-full rounded-md border border-gray-600 bg-[#020617] p-3 text-white"
+          />
+
+          {errors.dob && (
+            <p className="mt-1 text-sm text-red-400">{errors.dob.message}</p>
+          )}
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-300">
+            Phone Number
+          </label>
+
+          <div className="flex gap-2">
+            <select
+              {...register("countrycode")}
+              className="rounded-md border border-gray-600 bg-[#020617] p-3 text-white"
+            >
+              <option value="+91">+91</option>
+            </select>
+
             <input
-              type="text"
-              id="display"
-              {...register("name", { required: "Name is required" })}
-              className="border px-2 py-1 text-black rounded-md"
+              type="tel"
+              placeholder="9876543210"
+              {...register("phoneno", {
+                required: "Phone number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Enter valid 10 digit number",
+                },
+              })}
+              className="flex-1 rounded-md border border-gray-600 bg-[#020617] p-3 text-white"
             />
-            {errors.name && (
-              <span className="text-red-400 text-sm">
-                {errors.name.message}
-              </span>
-            )}
           </div>
 
-          {/* Date of Birth */}
-          <div className="flex flex-col w-fit gap-1">
-            <label htmlFor="dob">Date Of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              {...register("dob", { required: "Date of Birth is required" })}
-              className="bg-slate-600 text-yellow-300 px-2 py-1 rounded-md"
-            />
-            {errors.dob && (
-              <span className="text-red-400 text-sm">{errors.dob.message}</span>
-            )}
-          </div>
+          {errors.phoneno && (
+            <p className="mt-1 text-sm text-red-400">
+              {errors.phoneno.message}
+            </p>
+          )}
+        </div>
 
-          {/* Phone Number */}
-          <div className="flex flex-col w-fit gap-1">
-            <label htmlFor="phoneno" className="text-yellow-300">
-              Phone No.
-            </label>
-            <div className="flex gap-4 items-center mt-2">
-              <select
-                id="countrycode"
-                className="border px-2 py-1 text-black w-16 rounded-md"
-                {...register("countrycode")}
-              >
-                <option value="+91">+91</option>
-              </select>
+        {/* Gender */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-300">Gender</label>
+
+          <div className="flex flex-wrap gap-5 text-white">
+            <label>
               <input
-                type="tel"
-                id="phoneno"
-                {...register("phoneno", {
-                  required: "Phone number is required",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Enter a valid 10-digit number",
-                  },
-                })}
-                className="border px-2 py-1 text-black rounded-md"
+                type="radio"
+                value="male"
+                {...register("gender")}
+                className="mr-2"
               />
-            </div>
-            {errors.phoneno && (
-              <span className="text-red-400 text-sm">
-                {errors.phoneno.message}
-              </span>
-            )}
+              Male
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                value="female"
+                {...register("gender")}
+                className="mr-2"
+              />
+              Female
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                value="other"
+                {...register("gender")}
+                className="mr-2"
+              />
+              Other
+            </label>
           </div>
         </div>
 
-        {/* <div className=" "> */}
-        <div className=" flex flex-col gap-y-11">
-          {/* Profession */}
-          <div className="flex flex-col w-fit gap-1">
-            <label htmlFor="profession">Profession</label>
-            <input
-              type="text"
-              id="profession"
-              {...register("profession")}
-              className="border px-2 py-1 text-black rounded-md"
-            />
-          </div>
+        {/* About */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-300">About</label>
 
-          {/* Gender Radio */}
-          <div className="py-2">
-            <label className="font-medium">Gender</label>
-            <div className="flex gap-6 mt-2">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  value="male"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="accent-blue-500"
-                />
-                Male
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  value="female"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="accent-pink-500"
-                />
-                Female
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  value="other"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="accent-green-500"
-                />
-                Other
-              </label>
-            </div>
-            {errors.gender && (
-              <span className="text-red-400 text-sm">
-                {errors.gender.message}
-              </span>
-            )}
-          </div>
-
-          {/* About */}
-          <div className="flex flex-col w-fit gap-1">
-            <label htmlFor="about">About</label>
-            <input
-              type="text"
-              id="about"
-              {...register("about")}
-              className="border px-2 py-1 text-black rounded-md"
-            />
-          </div>
+          <textarea
+            rows={4}
+            {...register("about")}
+            className="w-full rounded-md border border-gray-600 bg-[#020617] p-3 text-white"
+            placeholder="Tell us about yourself..."
+          />
         </div>
-        {/* </div> */}
       </div>
 
-      {/* Buttons */}
-      <div className="flex gap-4 mt-6">
-        <button
-          type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded-md"
-        >
-          Save Profile
-        </button>
+      <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         <button
           type="button"
           onClick={() => reset()}
-          className="bg-red-500 text-white px-4 py-2 rounded-md"
+          className="rounded-md bg-gray-700 px-6 py-3 text-white hover:bg-gray-600"
         >
-          Reset
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          className="rounded-md bg-yellow-400 px-6 py-3 font-medium text-black hover:bg-yellow-300"
+        >
+          Save Changes
         </button>
       </div>
     </form>

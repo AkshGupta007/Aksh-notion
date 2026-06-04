@@ -51,7 +51,7 @@ const ViewCourse = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await getCourseProgress(courseId, token);
-      console.log("course progress response", res);
+      // console.log("course progress response", res);
       if (res) {
         dispatch(setCompletedLectures(res.completedsubsections));
       }
@@ -60,12 +60,12 @@ const ViewCourse = () => {
   }, [courseId, token, dispatch]);
 
   return (
-    <div className="flex h-screen">
-      <div className="w-[300px]">
+    <div className="flex min-h-screen flex-col md:flex-row">
+      <div className="w-full md:w-[300px]">
         <Videosidebar setreviewModal={setreviewModal} />
       </div>
 
-      <div className="flex-1 h-full">
+      <div className="h-full flex-1">
         <Outlet />
       </div>
 

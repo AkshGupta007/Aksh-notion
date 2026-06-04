@@ -29,8 +29,8 @@ export function sendOtp(email, navigate) {
         email,
         checkUserPresent: true,
       });
-      console.log("SENDOTP API RESPONSE............", response);
-      console.log(response.data.success);
+      // console.log("SENDOTP API RESPONSE............", response);
+      // console.log(response.data.success);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -58,7 +58,7 @@ export const login = (email, password, navigate) => {
         password,
       });
 
-      console.log("api response" + response);
+      // console.log("api response" + response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -77,9 +77,9 @@ export const login = (email, password, navigate) => {
 
       localStorage.setItem("token", JSON.stringify(response.data.token));
 
-      console.log("User from API:", response.data.user);
-      console.log("User saved in Redux:", userWithImage);
-      console.log("User in localStorage:", localStorage.getItem("user"));
+      // console.log("User from API:", response.data.user);
+      // console.log("User saved in Redux:", userWithImage);
+      // console.log("User in localStorage:", localStorage.getItem("user"));
       navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("error occured" + error);
@@ -98,7 +98,7 @@ export function resetpasswordtoken(email, setEmailsent) {
         email,
       });
 
-      console.log("reset password token response" + response);
+      // console.log("reset password token response" + response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -107,7 +107,7 @@ export function resetpasswordtoken(email, setEmailsent) {
       toast.success("email sent successfuly");
       setEmailsent(true);
     } catch (error) {
-      console.log("error occured" + error);
+      // console.log("error occured" + error);
       toast.error("email failed");
     }
 
@@ -126,7 +126,7 @@ export function resetpassword(password, confirmpassword, token) {
         token,
       });
 
-      console.log("password changed successfuly" + response);
+      // console.log("password changed successfuly" + response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -134,7 +134,7 @@ export function resetpassword(password, confirmpassword, token) {
 
       toast.success("password changed successfuly");
     } catch (error) {
-      console.log("error occured" + error);
+      // console.log("error occured" + error);
       toast.error("password change  failed");
     }
 
@@ -174,7 +174,7 @@ export function signUp(
         accounttype: accountType,
       });
 
-      console.log("SIGNUP RESPONSE:", response);
+      // console.log("SIGNUP RESPONSE:", response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -207,8 +207,8 @@ export const Updateprofile = ({ dob, about, contact, gender }) => {
   return async (dispatch) => {
     try {
        const token = localStorage.getItem("token");
-       console.log("token isss",token)
-       console.log("Sending Data:", { dob, about, contact, gender });
+      //  console.log("token isss",token)
+      //  console.log("Sending Data:", { dob, about, contact, gender });
       toast.success("wait");
 
       const response = await apiconnector(
@@ -227,7 +227,7 @@ export const Updateprofile = ({ dob, about, contact, gender }) => {
       );
 
       toast.success("updated successfully");
-      console.log(response.data.data);
+      // console.log(response.data.data);
     } catch (error) {
       toast.error("error in updating");
       console.log(error);
@@ -254,7 +254,7 @@ export const Changepassword=(email,currentPassword,newPassword)=>{
         
       toast.success("updated successfully");
 
-        console.log("response",response);
+       // console.log("response",response); 
     }catch(error){
       console.log("error",error);
         toast.error("error in updating");

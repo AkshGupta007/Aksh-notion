@@ -9,12 +9,18 @@ import { LuLogOut } from "react-icons/lu";
 const Sidebar = () => {
   const { user, loading } = useSelector((state) => state.profile);
   const { loading: authloading } = useSelector((state) => state.auth);
-  const [modal, setmodal] = useState(null);
+
+  const [modal, setModal] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   if (loading || authloading) {
-    return <div>loading...</div>;
+    return (
+      <div className="flex items-center justify-center p-5 text-white">
+        Loading...
+      </div>
+    );
   }
 
   const sidebarLinks = [
@@ -53,7 +59,7 @@ const Sidebar = () => {
       icon: "VscMortarBoard",
     },
     {
-      id: 7,
+      id: 6,
       name: "Wishlist",
       path: "/dashboard/cart",
       type: "user",
@@ -62,44 +68,75 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="text-white">
-      <div className="flex flex-col border-r h-[calc(100vh-3.5rem)] bg-zinc-800 py-10 min-w-[222px]">
-        <div className="flex flex-col justify-around items-center gap-3">
+    <>
+      <div
+        className="
+          w-full
+          bg-zinc-900
+          border-b border-zinc-700
+          md:w-[250px]
+          md:min-h-[calc(100vh-64px)]
+          md:border-r
+          md:border-b-0
+          flex
+          flex-col
+          justify-between
+        "
+      >
+        {/* Top Section */}
+        <div className="py-4">
           {sidebarLinks.map((link) => {
-            if (link.type && user?.accounttype !== link.type) return null;
-            return (
-              <div key={link.id}>
-                <SidebarLink link={link} icon={link.icon} />
-              </div>
-            );
+            if (link.type && user?.accounttype !== link.type) {
+              return null;
+            }
+
+            return <SidebarLink key={link.id} link={link} icon={link.icon} />;
           })}
         </div>
 
-        <div className="mt-3 px-8">
+        {/* Bottom Section */}
+        <div className="border-t border-zinc-700 py-4">
           <SidebarLink
-            link={{ name: "SETTING", path: "/dashboard/settings" }}
+            link={{
+              name: "Settings",
+              path: "/dashboard/settings",
+            }}
             icon="VscSettingsGear"
           />
-        </div>
 
-        <button className="mt-4 px-4"
-          onClick={() =>
-            setmodal({
-              text1: "ARE YOU SURE?",
-              text2: "YOU WILL BE LOGGED OUT",
-              btn1text: "LOGOUT",
-              btn2text: "CANCEL",
-              btn1handler: () => dispatch(logout(navigate)),
-              btn2handler: () => setmodal(null),
-            })
-          }
-        >
-          <LuLogOut className="inline-block mr-2" />
-          LOGOUT
-        </button>
+          <button
+            onClick={() =>
+              setModal({
+                text1: "Are you sure?",
+                text2: "You will be logged out.",
+                btn1text: "Logout",
+                btn2text: "Cancel",
+                btn1handler: () => dispatch(logout(navigate)),
+                btn2handler: () => setModal(null),
+              })
+            }
+            className="
+              flex
+              w-full
+              items-center
+              gap-3
+              px-6
+              py-3
+              text-sm
+              text-zinc-300
+              hover:bg-zinc-800
+              hover:text-white
+              transition-all
+            "
+          >
+            <LuLogOut size={18} />
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
+
       {modal && <ConfirmationModal modaldata={modal} />}
-    </div>
+    </>
   );
 };
 

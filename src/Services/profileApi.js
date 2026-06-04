@@ -15,7 +15,7 @@ export async function getUserEnrolledCourses(token) {
       Authorization: `Bearer ${token}`,
     });
 
-    console.log("GET_USER_ENROLLED_COURSES_API RESPONSE:", response);
+    // console.log("GET_USER_ENROLLED_COURSES_API RESPONSE:", response);
 
     if (!response.data.success) {
       throw new Error(response.data.message);
